@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BarberBook Register Page
+{% endblock %}
+
+{% block content %}
+    <h1>Register Page</h1>
+    <a href="{% url 'register-client' %}" class="link-button">Register a Client</a>
+    <a href="{% url 'register-barbershop' %}" class="link-button">Register a Barbershop</a>
+{% endblock %}

@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'https://use.fontawesome.com/releases/v5.10.2/css/all.css';
+
+:root {
+	--button-brown: #370511;
+}
+
+/* -----Resets----- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+	margin: 0;
+}
+
+ul[role='list'], ol[role='list'] {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* -----Styling----- */
+
+body {
+	font-family: Poppins, sans-serif;
+	line-height: 1.5;
+}
+main {
+    margin: 10rem 20rem;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 1rem 1rem;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+header a {
+    color: white;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: black;
+    color: white;
+    padding: 1rem 1rem;
+}
+
+footer a {
+    color: white;
+}
+.main-footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.footer-section {
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.link-button {
+    background: black;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
