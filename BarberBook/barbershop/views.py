@@ -1,14 +1,6 @@
 from django.shortcuts import render
 
 
-def register_barbershop(request):
-    return render(request, 'barbershop/register-barbershop.html')
-
-
-def login_barbershop(request):
-    return render(request, 'barbershop/login-barbershop.html')
-
-
 def edit_barbershop(request):
     return render(request, 'barbershop/edit-barbershop.html')
 
