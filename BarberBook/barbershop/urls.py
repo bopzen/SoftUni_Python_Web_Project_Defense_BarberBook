@@ -1,10 +1,10 @@
 from django.urls import path, include
 
-from BarberBook.barbershops.views import register_barbershop, login_barbershop, edit_barbershop, delete_barbershop, \
+from BarberBook.barbershop.views import register_barbershop, login_barbershop, edit_barbershop, delete_barbershop, \
     barbershop_details, barbershops_list
 
 urlpatterns = [
-    path('all/', barbershops_list, name='barbershops-list'),
+    path('all/', barbershops_list, name='barbershop-list'),
     path('barbershop/', include([
         path('register/', register_barbershop, name='register-barbershop'),
         path('login/', login_barbershop, name='login-barbershop'),

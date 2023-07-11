@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from BarberBook.clients.views import register_client, login_client, edit_client, delete_client, client_details
+from BarberBook.client.views import register_client, login_client, edit_client, delete_client, client_details
 
 urlpatterns = [
     path('client/', include([

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class BarbersConfig(AppConfig):
+class AccountsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'BarberBook.barbers'
+    name = 'BarberBook.account'

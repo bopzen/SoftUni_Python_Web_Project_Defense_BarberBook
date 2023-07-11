@@ -1,9 +1,9 @@
 from django.urls import path, include
 
-from BarberBook.barbers.views import add_barber, edit_barber, delete_barber, barber_details, barbers_list
+from BarberBook.barber.views import add_barber, edit_barber, delete_barber, barber_details, barbers_list
 
 urlpatterns = [
-    path('all/', barbers_list, name='barbers-list'),
+    path('all/', barbers_list, name='barber-list'),
     path('barber/', include([
         path('add/', add_barber, name='create-barber'),
         path('edit/', edit_barber, name='edit-barber'),

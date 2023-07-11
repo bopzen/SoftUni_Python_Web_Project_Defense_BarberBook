@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ReviewsConfig(AppConfig):
+class BarbershopsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'BarberBook.reviews'
+    name = 'BarberBook.barbershop'

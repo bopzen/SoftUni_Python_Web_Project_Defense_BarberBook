@@ -38,13 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'BarberBook.accounts',
-    'BarberBook.barbershops',
-    'BarberBook.barbers',
+    'BarberBook.account',
+    'BarberBook.barbershop',
+    'BarberBook.barber',
     'BarberBook.common',
-    'BarberBook.reservations',
-    'BarberBook.reviews',
-    'BarberBook.clients'
+    'BarberBook.reservation',
+    'BarberBook.review',
+    'BarberBook.client'
 ]
 
 MIDDLEWARE = [
