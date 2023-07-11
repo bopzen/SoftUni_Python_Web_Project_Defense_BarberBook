@@ -1,3 +1,28 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
-# Create your models here.
+
+UserModel = get_user_model()
+
+
+class ClientProfile(models.Model):
+    first_name = models.CharField(
+        max_length=30,
+        null=False,
+        blank=False
+    )
+    last_name = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False
+    )
+    city = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False
+    )
+    user = models.OneToOneField(
+        UserModel,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )

@@ -1,3 +1,5 @@
+{% load custom_filters %}
+
 <div class="home-logo">
     <h1>
         <a href="{% url 'home-page' %}">BarberBook</a>
@@ -8,10 +10,18 @@
 </div>
 <nav class="header-nav-links">
     <ul role="list">
-        <li class="nav-item"><a href="{% url 'register-page' %}">Register</a></li>
-        <li class="nav-item"><a href="{% url 'login-page' %}">Login</a></li>
-        <li class="nav-item"><a href="{% url 'logout-page' %}">Logout</a></li>
-        <li class="nav-item"><a href="{% url 'profile-page' %}">Profile</a></li>
+        {% if not request.user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'register-page' %}">Register</a></li>
+            <li class="nav-item"><a href="{% url 'login-page' %}">Login</a></li>
+        {% else %}
+            <li class="nav-item"><a href="">Welcome, {{ request.user }}</a></li>
+            <li class="nav-item"><a href="{% url 'logout-page' %}">Logout</a></li>
+            {% if request.user|get_role == 'Client' %}
+                <li><a href="{% url 'client-details' %}">Client Profile</a></li>
+            {% else %}
+                <li><a href="{% url 'barbershop-details' username=request.user pk=request.user.pk %}">Barbershop Profile</a></li>
+            {% endif %}
+        {% endif %}
     </ul>
 </nav>
 

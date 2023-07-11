@@ -4,14 +4,13 @@
     </div>
     <nav class="footer-nav-links">
         <ul role="list">
-            <li class="nav-item"><a href="{% url 'register-page' %}">Register</a></li>
-            <li class="nav-item"><a href="{% url 'login-page' %}">Login</a></li>
-            <li class="nav-item"><a href="{% url 'logout-page' %}">Logout</a></li>
-            <li class="nav-item"><a href="{% url 'profile-page' %}">Profile</a></li>
+            <li class="nav-item"><a href="{% url 'register-page' %}">About</a></li>
+            <li class="nav-item"><a href="{% url 'login-page' %}">Contacts</a></li>
+            <li class="nav-item"><a href="{% url 'logout-page' %}">Social</a></li>
         </ul>
     </nav>
 </div>
 
 <div class="footer">
-    <p class="footer-section">© 2023 BOPZEN SoftUni Python Web Project Defense barberbook.bg</p>
+    <p class="footer-section">© 2023 BOPZEN <a href="https://softuni.bg/">SoftUni</a> Python Web Project Defense <a href="{% url 'home-page' %}">barberbook.bg</a></p>
 </div>

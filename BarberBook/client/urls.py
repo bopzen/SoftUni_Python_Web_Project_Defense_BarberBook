@@ -1,11 +1,8 @@
-from django.urls import path, include
+from django.urls import path
 
-from BarberBook.client.views import edit_client, delete_client, client_details
+from BarberBook.client.views import EditClientProfileView, ClientProfileDetailsView
 
 urlpatterns = [
-    path('client/', include([
-        path('edit/', edit_client, name='edit-client'),
-        path('delete/', delete_client, name='delete-client'),
-        path('details/', client_details, name='client-details')
-    ]))
+    path('edit/', EditClientProfileView.as_view(), name='edit-client'),
+    path('profile/', ClientProfileDetailsView.as_view(), name='client-details')
 ]

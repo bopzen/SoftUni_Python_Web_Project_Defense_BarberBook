@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
-
 {% block title %}
-    BarberBook Edit Client Page
+Barberbook Edit Client Page
 {% endblock %}
 
 {% block content %}
-    <h1>Edit Client Page</h1>
+    <h1>{{ request.user }}</h1>
+    <h1>Edit Client Profile</h1>
+    <form action="{% url 'edit-client' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Edit</button>
+    </form>
 {% endblock %}

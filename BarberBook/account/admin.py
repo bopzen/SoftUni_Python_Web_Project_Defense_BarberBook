@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from BarberBook.account.models import AppUser
+
+
+@admin.register(AppUser)
+class AdminAppUser(admin.ModelAdmin):
+    pass

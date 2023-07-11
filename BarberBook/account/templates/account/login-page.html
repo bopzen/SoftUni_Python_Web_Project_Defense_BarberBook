@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+Barberbook Login Page
+{% endblock %}
+
+{% block content %}
+    <h1>Login User</h1>
+    <form action="{% url 'login-page' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="">Forgot your password?</a>
+        <div>
+            <button>Login</button>
+            or
+            <a href="{% url 'register-page' %}">Register</a>
+        </div>
+
+    </form>
+{% endblock %}

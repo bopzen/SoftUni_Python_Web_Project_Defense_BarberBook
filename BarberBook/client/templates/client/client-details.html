@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
-
 {% block title %}
-    BarberBook Client Details Page
+Barberbook Client Details Page
 {% endblock %}
 
 {% block content %}
-    <h1>Client Details Page</h1>
+    <h1>{{ request.user }}</h1>
+    <h1>Profile Details</h1>
+    <ul>
+        <li>Email: {{ object.user.email }}</li>
+        <li>First Name: {{ object.first_name }}</li>
+        <li>Last Name: {{ object.last_name }}</li>
+        <li>City: {{ object.city }}</li>
+    </ul>
+    <a href="{% url 'edit-client' %}" class="link-button">Edit Profile</a>
+    <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>
+
 {% endblock %}
