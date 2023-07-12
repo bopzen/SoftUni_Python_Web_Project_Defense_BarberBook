@@ -9,6 +9,7 @@ Barberbook Edit Barbershop Page
     <form action="{% url 'edit-barbershop' pk=object.pk %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="link-button">Edit</button>
+        <button>Edit Barbershop</button>
+    <a href="{% url 'barbershop-details' username=request.user pk=request.user.pk %}"><button>Cancel</button></a>
     </form>
 {% endblock %}

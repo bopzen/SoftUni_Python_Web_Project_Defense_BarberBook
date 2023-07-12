@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
 Barberbook Client Details Page
 {% endblock %}
@@ -6,11 +8,19 @@ Barberbook Client Details Page
 {% block content %}
     <h1>{{ request.user }}</h1>
     <h1>Profile Details</h1>
+    {% if object.profile_picture %}
+        <img src="{{ object.profile_picture.url }}" class="profile-picture" alt="profile_picture">
+    {% else %}
+        <img src="{% static 'images/client-default-profile-picture.jpg' %}" alt="default_profile_picture" class="profile-picture">
+    {% endif %}
     <ul>
         <li>Email: {{ object.user.email }}</li>
+        <li>Phone: {{ object.phone }}</li>
         <li>First Name: {{ object.first_name }}</li>
         <li>Last Name: {{ object.last_name }}</li>
         <li>City: {{ object.city }}</li>
+
+
     </ul>
     <a href="{% url 'edit-client' %}" class="link-button">Edit Profile</a>
     <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>

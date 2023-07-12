@@ -9,7 +9,7 @@ from BarberBook.client.models import ClientProfile
 class EditClientProfileView(auth_mixins.LoginRequiredMixin, views.UpdateView):
     model = ClientProfile
     template_name = 'client/edit-client.html'
-    fields = ['first_name', 'last_name', 'city']
+    fields = ['first_name', 'last_name', 'city', 'phone', 'profile_picture']
 
     def get_success_url(self):
         return reverse_lazy('client-details')

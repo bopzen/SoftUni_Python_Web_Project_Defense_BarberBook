@@ -40,7 +40,7 @@ body {
 	line-height: 1.5;
 }
 main {
-    margin: 10rem 20rem;
+    margin: 2rem 20rem;
 }
 
 header {
@@ -58,9 +58,22 @@ header nav ul {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    align-items: center;
 }
 header a {
     color: white;
+}
+
+.home-logo a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 2rem;
+    font-family: Rye, sans-serif
+}
+.home-logo img {
+    width: 60px;
+
 }
 
 footer {
@@ -110,4 +123,25 @@ button {
     padding: 4px 16px;
     border-radius: 16px;
     border: none;
+    cursor: pointer;
+}
+
+.profile-picture {
+    height: 100px;
+    border: 2px solid black;
+}
+.profile-picture-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.nav-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 0.8rem;
+    gap: 8px;
 }

@@ -1,6 +1,8 @@
-
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
+from BarberBook import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,3 +14,6 @@ urlpatterns = [
     path('reservation/', include('BarberBook.reservation.urls')),
     path('review/', include('BarberBook.review.urls'))
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

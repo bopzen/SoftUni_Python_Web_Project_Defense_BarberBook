@@ -1,9 +1,12 @@
 {% load custom_filters %}
+{% load static %}
 
 <div class="home-logo">
-    <h1>
-        <a href="{% url 'home-page' %}">BarberBook</a>
-    </h1>
+
+    <a href="{% url 'home-page' %}">
+        <img src="{% static 'images/barbershop-pole.jpg' %}" alt="barbershop-pole">
+        <span>BarberBook</span>
+    </a>
 </div>
 <div class="search-field">
     <input type="text" placeholder="Search barbershop...">
@@ -14,13 +17,25 @@
             <li class="nav-item"><a href="{% url 'register-page' %}">Register</a></li>
             <li class="nav-item"><a href="{% url 'login-page' %}">Login</a></li>
         {% else %}
-            <li class="nav-item"><a href="">Welcome, {{ request.user }}</a></li>
             <li class="nav-item"><a href="{% url 'logout-page' %}">Logout</a></li>
             {% if request.user|get_role == 'Client' %}
                 <li><a href="{% url 'client-details' %}">Client Profile</a></li>
+                <li class="nav-item nav-profile">
+                    <a href="{% url 'client-details' %}">Welcome, {{ request.user }}</a>
+                    <a href="{% url 'client-details' %}">
+                        {% if request.user.clientprofile.profile_picture %}
+                            <img src="{{ request.user.clientprofile.profile_picture.url }}" alt="profile-picture-thumbnail" class="profile-picture-thumbnail">
+                        {% else %}
+                            <img src="{% static 'images/client-default-profile-picture.jpg' %}" alt="default_profile_picture" class="profile-picture-thumbnail">
+                        {% endif %}
+                    </a>
+                </li>
             {% else %}
                 <li><a href="{% url 'barbershop-details' username=request.user pk=request.user.pk %}">Barbershop Profile</a></li>
             {% endif %}
+
+
+
         {% endif %}
     </ul>
 </nav>

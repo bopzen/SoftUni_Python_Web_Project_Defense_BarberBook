@@ -21,6 +21,18 @@ class ClientProfile(models.Model):
         null=False,
         blank=False
     )
+    phone = models.CharField(
+        max_length=12,
+        null=False,
+        blank=False
+    )
+
+    profile_picture = models.ImageField(
+        upload_to='profile-pictures',
+        null=True,
+        blank=True,
+    )
+
     user = models.OneToOneField(
         UserModel,
         on_delete=models.CASCADE,
