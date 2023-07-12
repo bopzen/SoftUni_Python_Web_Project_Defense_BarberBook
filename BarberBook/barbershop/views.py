@@ -9,10 +9,11 @@ from BarberBook.barbershop.models import BarbershopProfile
 class EditBarbershopProfileView(auth_mixins.LoginRequiredMixin, views.UpdateView):
     model = BarbershopProfile
     template_name = 'barbershop/edit-barbershop.html'
-    fields = ['name', 'address', 'city']
+    fields = ['name', 'address', 'city', 'about']
 
     def get_success_url(self):
-        return reverse_lazy('barbershop-details', kwargs={'pk': self.request.user.pk, 'username': self.request.user.username})
+        barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        return reverse_lazy('barbershop-details', kwargs={'slug': barbershop.slug})
 
     def get_object(self, queryset=None):
         return BarbershopProfile.objects.get(user_id=self.request.user)

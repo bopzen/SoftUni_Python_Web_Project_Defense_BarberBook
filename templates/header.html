@@ -31,7 +31,7 @@
                     </a>
                 </li>
             {% else %}
-                <li><a href="{% url 'barbershop-details' username=request.user pk=request.user.pk %}">Barbershop Profile</a></li>
+                <li><a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}">Barbershop Profile</a></li>
             {% endif %}
 
 
