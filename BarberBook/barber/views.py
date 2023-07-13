@@ -16,6 +16,12 @@ class CreateBarberView(auth_mixins.LoginRequiredMixin, views.CreateView):
         barbershop = BarbershopProfile.objects.get(user=self.request.user)
         return reverse_lazy('barbershop-details', kwargs={'slug': barbershop.slug})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        context['barbershop'] = barbershop
+        return context
+
     def form_valid(self, form):
         form.instance.barbershop = BarbershopProfile.objects.get(user=self.request.user)
         return super().form_valid(form)

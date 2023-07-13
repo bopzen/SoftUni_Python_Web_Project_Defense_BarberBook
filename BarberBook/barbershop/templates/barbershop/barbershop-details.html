@@ -30,6 +30,24 @@ Barberbook Barbershop Details Page
             {% endif %}
         </div>
 
+        <div class="services">
+            <h2>Services</h2>
+            <ul>
+                {% for service in object.barbershopservice_set.all %}
+                    {% if object.pk == request.user.pk %}
+                        <li><a href="{% url 'service-details' slug=object.slug pk=service.pk %}">{{ service.service_name }} - {{ service.price }} lv.</a></li>
+                    {% else %}
+                    <li>{{ service.service_name }} - {{ service.price }} lv.</li>
+                    {% endif %}
+                {% empty %}
+                    <li>This barbershop has no services yet</li>
+                {% endfor %}
+            </ul>
+            {% if object.pk == request.user.pk %}
+                <a href="{% url 'create-service' slug=object.slug %}" class="link-button">Add New Service</a>
+            {% endif %}
+        </div>
+
         <div class="barbers-list">
             <h2>Barbers</h2>
             <ul>
