@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
 Barberbook Barbershop Details Page
 {% endblock %}
@@ -8,6 +10,11 @@ Barberbook Barbershop Details Page
     <div class="barbershop-details-wrapper">
         <div class="barbeshop-details">
             <h1>Barbershop Details</h1>
+                {% if object.barbershop_picture %}
+                    <img src="{{ object.barbershop_picture.url }}" class="profile-picture" alt="barbershop-profile_picture">
+                {% else %}
+                    <img src="{% static 'images/barbershop-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture">
+                {% endif %}
             <ul>
                 <li>Email: {{ object.user.email }}</li>
                 <li>Name: {{ object.name }}</li>

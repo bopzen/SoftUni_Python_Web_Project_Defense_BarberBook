@@ -10,6 +10,7 @@
     </a>
 </div>
 <div class="search-field">
+    <span><i class="fas fa-search"></i></span>
     <input type="text" placeholder="Search barbershop...">
 </div>
 <nav class="header-nav-links">
@@ -33,6 +34,16 @@
                 </li>
             {% else %}
                 <li><a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}">Barbershop Profile</a></li>
+                <li class="nav-item nav-profile">
+                    <a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}">Welcome, {{ request.user }}</a>
+                    <a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}">
+                        {% if request.user.barbershopprofile.barbershop_picture %}
+                            <img src="{{ request.user.barbershopprofile.barbershop_picture.url }}" alt="barbershop-profile-picture-thumbnail" class="profile-picture-thumbnail">
+                        {% else %}
+                            <img src="{% static 'images/barbershop-default-profile-picture.jpg' %}" alt="barbershop-default_profile_picture" class="profile-picture-thumbnail">
+                        {% endif %}
+                    </a>
+                </li>
             {% endif %}
 
 

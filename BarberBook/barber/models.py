@@ -14,7 +14,7 @@ class Barber(models.Model):
         blank=False
     )
     barber_picture = models.ImageField(
-        upload_to='barber-pictures',
+        upload_to='barber-profile-pictures',
         null=True,
         blank=True,
     )

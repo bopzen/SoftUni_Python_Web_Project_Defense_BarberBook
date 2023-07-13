@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=30)),
                 ('about', models.TextField()),
-                ('barber_picture', models.ImageField(blank=True, null=True, upload_to='barber-pictures')),
+                ('barber_picture', models.ImageField(blank=True, null=True, upload_to='barber-profile-pictures')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
             ],
         ),

@@ -8,7 +8,7 @@
 {% block content %}
     <h1>Barber Details Page</h1>
     {% if object.barber_picture %}
-        <img src="{{ object.barber_picture.url }}" class="profile-picture" alt="profile_picture">
+        <img src="{{ object.barber_picture.url }}" class="profile-picture" alt="barber-profile_picture">
     {% else %}
         <img src="{% static 'images/barber-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture">
     {% endif %}

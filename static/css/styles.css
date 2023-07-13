@@ -76,6 +76,26 @@ header a {
 
 }
 
+.search-field {
+    position: relative;
+    width: 30%;
+}
+
+.search-field span {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    color: black;
+    z-index: 1;
+}
+.search-field input {
+    padding: 0.5rem 2.25rem;
+    width: 100%;
+    border-radius: 16px;
+    border: none;
+    font-size: 1rem;
+}
+
 footer {
     width: 100%;
     position: fixed;

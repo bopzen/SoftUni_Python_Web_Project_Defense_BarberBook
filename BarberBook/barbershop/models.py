@@ -27,6 +27,12 @@ class BarbershopProfile(models.Model):
         blank=True
     )
 
+    barbershop_picture = models.ImageField(
+        upload_to='barbershop-profile-pictures',
+        null=True,
+        blank=True,
+    )
+
     slug = models.SlugField(
         unique=True
     )

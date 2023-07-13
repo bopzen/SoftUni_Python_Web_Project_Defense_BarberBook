@@ -28,7 +28,7 @@ class ClientProfile(models.Model):
     )
 
     profile_picture = models.ImageField(
-        upload_to='profile-pictures',
+        upload_to='client-profile-pictures',
         null=True,
         blank=True,
     )
