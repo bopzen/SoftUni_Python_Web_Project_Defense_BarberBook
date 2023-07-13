@@ -1,11 +1,11 @@
 from django.urls import path, include
 
-from BarberBook.barber.views import CreateBarberView, edit_barber, delete_barber, barber_details, barbers_list
+from BarberBook.barber.views import CreateBarberView, EditBarberView, DeleteBarberView, BarberDetailsView, barbers_list
 
 urlpatterns = [
     path('all/', barbers_list, name='barber-list'),
     path('create/', CreateBarberView.as_view(), name='create-barber'),
-    path('edit/', edit_barber, name='edit-barber'),
-    path('delete/', delete_barber, name='delete-barber'),
-    path('details/', barber_details, name='barber-details')
+    path('<int:pk>/edit/', EditBarberView.as_view(), name='edit-barber'),
+    path('<int:pk>/delete/', DeleteBarberView.as_view(), name='delete-barber'),
+    path('<int:pk>/details/', BarberDetailsView.as_view(), name='barber-details')
 ]

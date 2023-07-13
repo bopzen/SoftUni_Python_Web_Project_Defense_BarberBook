@@ -1,8 +1,6 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 
-
-UserModel = get_user_model()
+from BarberBook.barbershop.models import BarbershopProfile
 
 
 class Barber(models.Model):
@@ -20,7 +18,7 @@ class Barber(models.Model):
         null=True,
         blank=True,
     )
-    user = models.ForeignKey(
-        UserModel,
+    barbershop = models.ForeignKey(
+        BarbershopProfile,
         on_delete=models.DO_NOTHING
     )

@@ -32,11 +32,10 @@ class UserLogoutView(auth_views.LogoutView):
 
     def dispatch(self, request, *args, **kwargs):
         if 'confirm' in request.GET:
-            # If 'confirm' query parameter is present, proceed with logout
             return super().dispatch(request, *args, **kwargs)
         else:
-            # Render the logout confirmation template
             return render(request, self.template_name)
+
 
 class UserDeleteView(views.DeleteView):
     model = UserModel

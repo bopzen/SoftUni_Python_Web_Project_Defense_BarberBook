@@ -38,5 +38,8 @@ class BarbershopProfile(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        if self.name:
+            self.slug = slugify(self.name)
+        else:
+            self.slug = slugify(self.user)
         return super().save(*args, **kwargs)

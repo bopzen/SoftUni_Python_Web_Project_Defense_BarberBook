@@ -6,4 +6,10 @@
 
 {% block content %}
     <h1>Edit Barber Page</h1>
+    <form action="{% url 'edit-barber' pk=object.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Edit Barber</button>
+        <a href="{% url 'barber-details' pk=object.pk %}"><button>Cancel</button></a>
+    </form>
 {% endblock %}

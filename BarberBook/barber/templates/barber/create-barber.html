@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    BarberBook Add Barber Page
+    BarberBook Create Barber Page
 {% endblock %}
 
 {% block content %}
-    <h1>Add Barber Page</h1>
-
-{% endblock %}
+    <h1>Create Barber Page</h1>
+    <form action="{% url 'create-barber' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Add Barber</button>
+        <a href="{% url 'client-details' %}"><button>Cancel</button></a>
+    </form>
+{% endblock %}1
