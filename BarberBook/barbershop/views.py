@@ -35,3 +35,5 @@ class BarbershopProfileDetailsView(views.DetailView):
 
 def barbershop_list(request):
     return render(request, 'barbershop/barbershops-list.html')
+
+

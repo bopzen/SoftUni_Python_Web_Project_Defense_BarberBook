@@ -13,3 +13,4 @@ class AppUser(AbstractUser):
         choices=ROLES,
         blank=True
     )
+

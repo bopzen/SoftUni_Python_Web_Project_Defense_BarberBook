@@ -22,3 +22,6 @@ class Barber(models.Model):
         BarbershopProfile,
         on_delete=models.DO_NOTHING
     )
+
+    def __str__(self):
+        return self.name

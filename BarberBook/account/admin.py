@@ -5,4 +5,4 @@ from BarberBook.account.models import AppUser
 
 @admin.register(AppUser)
 class AdminAppUser(admin.ModelAdmin):
-    pass
+    list_display = ['username', 'email', 'role']

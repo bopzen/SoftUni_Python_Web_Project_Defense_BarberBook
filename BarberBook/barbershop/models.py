@@ -21,27 +21,26 @@ class BarbershopProfile(models.Model):
         null=False,
         blank=False
     )
-
     about = models.TextField(
         null=True,
         blank=True
     )
-
     barbershop_picture = models.ImageField(
         upload_to='barbershop-profile-pictures',
         null=True,
         blank=True,
     )
-
     slug = models.SlugField(
         unique=True
     )
-
     user = models.OneToOneField(
         UserModel,
         on_delete=models.CASCADE,
         primary_key=True
     )
+
+    def __str__(self):
+        return self.name
 
     def save(self, *args, **kwargs):
         if self.name:

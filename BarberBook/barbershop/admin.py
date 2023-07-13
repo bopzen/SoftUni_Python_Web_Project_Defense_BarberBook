@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from BarberBook.barbershop.models import BarbershopProfile
+
+
+@admin.register(BarbershopProfile)
+class AdminBarbershopProfile(admin.ModelAdmin):
+    list_display = ['name', 'city', 'user']
