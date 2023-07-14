@@ -5,7 +5,7 @@ from BarberBook.barbershop.models import BarbershopProfile, ServiceCategory, Bar
 
 @admin.register(BarbershopProfile)
 class AdminBarbershopProfile(admin.ModelAdmin):
-    list_display = ['name', 'city', 'user']
+    list_display = ['pk', 'name', 'city', 'user']
 
 
 @admin.register(ServiceCategory)

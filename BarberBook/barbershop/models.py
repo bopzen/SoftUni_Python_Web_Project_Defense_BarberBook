@@ -49,6 +49,7 @@ class BarbershopProfile(models.Model):
         if self.name:
             self.slug = slugify(self.name)
         else:
+            self.name = slugify(self.user)
             self.slug = slugify(self.user)
         super().save(*args, **kwargs)
 
@@ -114,10 +115,12 @@ class BarbershopWorkingHours(models.Model):
 
     TIME_SLOT_CHOICES = []
     for hour in range(0, 24):
-        for minute in range(0, 60, 15):
+        for minute in range(0, 60, 30):
             time_slot = time(hour, minute)
             display_text = time_slot.strftime('%H:%M')
             TIME_SLOT_CHOICES.append((time_slot, display_text))
+
+
 
     barbershop = models.ForeignKey(
         BarbershopProfile,
@@ -141,6 +144,7 @@ class BarbershopWorkingHours(models.Model):
 
     class Meta:
         unique_together = ('barbershop', 'day')
+        verbose_name_plural = 'Barbershop Working Hours'
 
     def clean(self):
         if self.start_time is not None and self.end_time is not None:
