@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import mixins as auth_mixins
 from django.views import generic as views
 
-from BarberBook.barbershop.models import BarbershopProfile, BarbershopService
+from BarberBook.barbershop.models import BarbershopProfile, BarbershopService, BarbershopWorkingHours
 
 
 class EditBarbershopProfileView(auth_mixins.LoginRequiredMixin, views.UpdateView):
@@ -93,3 +93,26 @@ class DeleteBarbershopServiceView(auth_mixins.LoginRequiredMixin, auth_mixins.Us
 class BarbershopServicesDetailsView(views.DetailView):
     model = BarbershopService
     template_name = 'services/service-details.html'
+
+
+class BarbershopWorkingHoursDetailsView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.DetailView):
+    model = BarbershopWorkingHours
+    template_name = 'barbershop/working-hours-details.html'
+
+    def test_func(self):
+        barber = self.get_object()
+        return barber.barbershop.user == self.request.user
+
+
+class EditBarbershopWorkingHoursView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.UpdateView):
+    model = BarbershopWorkingHours
+    template_name = 'barbershop/edit-working-hours.html'
+    fields = ['start_time', 'end_time']
+
+    def get_success_url(self):
+        barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        return reverse_lazy('barbershop-details', kwargs={'slug': barbershop.slug})
+
+    def test_func(self):
+        barber = self.get_object()
+        return barber.barbershop.user == self.request.user

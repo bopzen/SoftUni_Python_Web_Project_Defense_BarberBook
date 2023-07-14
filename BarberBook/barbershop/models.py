@@ -1,4 +1,7 @@
+from datetime import time
+
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -47,15 +50,25 @@ class BarbershopProfile(models.Model):
             self.slug = slugify(self.name)
         else:
             self.slug = slugify(self.user)
-        return super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
+
+        for day in range(1, 8):
+            BarbershopWorkingHours.objects.create(
+                barbershop=self,
+                day=day,
+                start_time=None,
+                end_time=None
+            )
 
 
 class ServiceCategory(models.Model):
     class Meta:
         verbose_name_plural = 'Service Categories'
-        
+
     category_name = models.CharField(
-        max_length=30
+        max_length=30,
+        null=False,
+        blank=False
     )
 
     def __str__(self):
@@ -65,20 +78,75 @@ class ServiceCategory(models.Model):
 class BarbershopService(models.Model):
     service_name = models.CharField(
         max_length=50,
+        null=False,
+        blank=False
     )
     price = models.DecimalField(
         max_digits=5,
-        decimal_places=2
+        decimal_places=2,
+        null=False,
+        blank=False
     )
     category = models.ForeignKey(
         ServiceCategory,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
+
+    barbershop = models.ForeignKey(
+        BarbershopProfile,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.service_name
+
+
+class BarbershopWorkingHours(models.Model):
+    WEEKDAYS = (
+        (1, 'Monday'),
+        (2, 'Tuesday'),
+        (3, 'Wednesday'),
+        (4, 'Thursday'),
+        (5, 'Friday'),
+        (6, 'Saturday'),
+        (7, 'Sunday'),
+    )
+
+    TIME_SLOT_CHOICES = []
+    for hour in range(0, 24):
+        for minute in range(0, 60, 15):
+            time_slot = time(hour, minute)
+            display_text = time_slot.strftime('%H:%M')
+            TIME_SLOT_CHOICES.append((time_slot, display_text))
 
     barbershop = models.ForeignKey(
         BarbershopProfile,
         on_delete=models.CASCADE
     )
+    day = models.IntegerField(
+        choices=WEEKDAYS,
+        null=False,
+        blank=False
+    )
+    start_time = models.TimeField(
+        choices=TIME_SLOT_CHOICES,
+        null=True,
+        blank=True
+    )
+    end_time = models.TimeField(
+        choices=TIME_SLOT_CHOICES,
+        null=True,
+        blank=True
+    )
 
-    def __str__(self):
-        return self.service_name
+    class Meta:
+        unique_together = ('barbershop', 'day')
+
+    def clean(self):
+        if self.start_time is not None and self.end_time is not None:
+            if self.start_time >= self.end_time:
+                raise ValidationError('End time must be later than start time.')
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)

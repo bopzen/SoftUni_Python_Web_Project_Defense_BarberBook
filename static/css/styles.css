@@ -38,9 +38,11 @@ a {
 body {
 	font-family: Poppins, sans-serif;
 	line-height: 1.5;
+    height: 100%
 }
 main {
     padding: 2rem 10rem;
+    min-height: 70vh;
 }
 
 header {
@@ -170,4 +172,9 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.closed-sign {
+    height: 30px;
+    transform: rotate(10deg);
 }

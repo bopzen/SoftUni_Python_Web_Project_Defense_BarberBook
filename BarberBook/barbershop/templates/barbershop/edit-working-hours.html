@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load barbershop_custom_filters %}
+
+{% block title %}
+Barberbook Edit Barbershop Working Hours Page
+{% endblock %}
+
+{% block content %}
+    <h1>{{ request.user }}</h1>
+    <h1>Edit Barbershop Working Hours</h1>
+    <h3>{{ object.day|weekday_name }}</h3>
+    <form action="{% url 'edit-working-hours' slug=object.barbershop.slug pk=object.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Edit Working Hours</button>
+    </form>
+    <a href="{% url 'barbershop-details' slug=object.barbershop.slug %}"><button>Cancel</button></a>
+{% endblock %}

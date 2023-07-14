@@ -20,7 +20,7 @@ class Barber(models.Model):
     )
     barbershop = models.ForeignKey(
         BarbershopProfile,
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE
     )
 
     def __str__(self):

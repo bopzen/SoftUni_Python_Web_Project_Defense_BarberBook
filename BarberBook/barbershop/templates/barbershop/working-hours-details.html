@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load barbershop_custom_filters %}
+
+{% block title %}
+    BarberBook Working Hours Details Page
+{% endblock %}
+
+{% block content %}
+    <h1>Working Hours Details Page</h1>
+    <ul>
+        <li>Weekday: {{ object.day|weekday_name }}</li>
+        <li>Start Time: {{ object.start_time }}</li>
+        <li>End Time: {{ object.end_time }}</li>
+    </ul>
+
+    {% if object.barbershop.pk == request.user.pk %}
+        <a href="{% url 'edit-working-hours' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Edit Hours</a>
+    {% endif %}
+{% endblock %}
