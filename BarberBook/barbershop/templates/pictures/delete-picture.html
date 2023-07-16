@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BarberBook Delete Photo Page
+{% endblock %}
+
+{% block content %}
+    <h1>Delete Photo Page</h1>
+    <img src="{{ object.image.url }}" alt="picture" class="barbershop-photo-thumbnail">
+    <h2>Are you sure you want to delete this photo?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button>Delete</button>
+        <a href="{% url 'picture-details' slug=object.barbershop.slug pk=object.pk %}">Cancel</a>
+    </form>
+{% endblock %}

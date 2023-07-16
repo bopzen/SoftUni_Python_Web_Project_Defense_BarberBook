@@ -1,3 +1,4 @@
+import uuid
 from datetime import time
 
 from django.contrib.auth import get_user_model
@@ -164,3 +165,17 @@ class BarbershopWorkingHours(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         return super().save(*args, **kwargs)
+
+
+def barbershop_picture_upload_to(instance, filename):
+    barbershop_id = instance.barbershop.pk
+    upload_filename = f'{uuid.uuid4().hex}.jpg'
+    return f'barbershop-pictures/{barbershop_id}/{upload_filename}'
+
+
+class BarbershopPicture(models.Model):
+    barbershop = models.ForeignKey(
+        BarbershopProfile,
+        on_delete=models.CASCADE
+    )
+    image = models.ImageField(upload_to=barbershop_picture_upload_to)

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BarberBook Add Photo Page
+{% endblock %}
+
+{% block content %}
+    <h1>Add Photo Page</h1>
+    <form action="{% url 'create-picture' slug=barbershop.slug %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Add Photo</button>
+    </form>
+    <a href="{% url 'barbershop-details' slug=barbershop.slug %}"><button>Cancel</button></a>
+{% endblock %}

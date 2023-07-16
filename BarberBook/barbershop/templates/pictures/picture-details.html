@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BarberBook Photo Details Page
+{% endblock %}
+
+{% block content %}
+    <h1>Photo Details Page</h1>
+    <img src="{{ object.image.url }}" alt="picture" class="barbershop-photo-full">
+
+    {% if object.barbershop.pk == request.user.pk %}
+        <a href="{% url 'delete-picture' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Delete Picture</a>
+    {% endif %}
+{% endblock %}

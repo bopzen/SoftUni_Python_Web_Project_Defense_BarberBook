@@ -4,7 +4,7 @@ from django.contrib.auth import mixins as auth_mixins
 from django.views import generic as views
 
 
-from BarberBook.barbershop.models import BarbershopProfile, BarbershopService, BarbershopWorkingHours
+from BarberBook.barbershop.models import BarbershopProfile, BarbershopService, BarbershopWorkingHours, BarbershopPicture
 
 
 class EditBarbershopProfileView(auth_mixins.LoginRequiredMixin, views.UpdateView):
@@ -117,3 +117,47 @@ class EditBarbershopWorkingHoursView(auth_mixins.LoginRequiredMixin, auth_mixins
     def test_func(self):
         barber = self.get_object()
         return barber.barbershop.user == self.request.user
+
+
+class CreateBarbershopPictureView(auth_mixins.LoginRequiredMixin, views.CreateView):
+    model = BarbershopPicture
+    template_name = 'pictures/create-picture.html'
+    fields = ['image']
+
+    def get_success_url(self):
+        barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        return reverse_lazy('barbershop-details', kwargs={'slug': barbershop.slug})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        context['barbershop'] = barbershop
+        return context
+
+    def form_valid(self, form):
+        form.instance.barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        return super().form_valid(form)
+
+
+class DeleteBarbershopPictureView(auth_mixins.LoginRequiredMixin, auth_mixins.UserPassesTestMixin, views.DeleteView):
+    model = BarbershopPicture
+    template_name = 'pictures/delete-picture.html'
+
+    def get_success_url(self):
+        barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        return reverse_lazy('barbershop-details', kwargs={'slug': barbershop.slug})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        barbershop = BarbershopProfile.objects.get(user=self.request.user)
+        context['barbershop'] = barbershop
+        return context
+
+    def test_func(self):
+        barber = self.get_object()
+        return barber.barbershop.user == self.request.user
+
+
+class BarbershopPictureDetailsView(views.DetailView):
+    model = BarbershopPicture
+    template_name = 'pictures/picture-details.html'

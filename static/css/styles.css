@@ -188,3 +188,12 @@ button {
     height: 400px;
     border: 3px solid black;
 }
+
+.barbershop-photo-thumbnail {
+    height: 200px;
+    border: 6px solid black;
+}
+.barbershop-photo-full{
+    height: 600px;
+    border: 6px solid black;
+}

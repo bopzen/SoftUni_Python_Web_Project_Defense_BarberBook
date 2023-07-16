@@ -1,6 +1,3 @@
-
-
-
 {% extends 'base.html' %}
 {% load static %}
 {% load barbershop_custom_filters %}
@@ -32,7 +29,6 @@ Barberbook Barbershop Details Page
                 <li>Email: {{ object.user.email }}</li>
                 <li>Name: {{ object.name }}</li>
                 <li>Address: {{ object.address }}</li>
-                <li>Geolocation: {{ longitude }} {{ latitude }}</li>
                 <li>City: {{ object.city }}</li>
                 <li>About: {{ object.about }}</li>
                 <li>Barbers: {{ object.barber_set.count }}</li>
@@ -75,6 +71,16 @@ Barberbook Barbershop Details Page
                 <a href="{% url 'create-barber' %}" class="link-button">Add New Barber</a>
             {% endif %}
         </div>
+    </div>
+    <div class="barbershop-pictures">
+        {% for picture in object.barbershoppicture_set.all %}
+            <a href="{% url 'picture-details' slug=object.slug pk=picture.pk %}"><img src="{{ picture.image.url }}" alt="picture" class="barbershop-photo-thumbnail"></a>
+        {% empty %}
+            <h3>No photo uploaded</h3>
+        {% endfor %}
+        {% if object.pk == request.user.pk %}
+            <a href="{% url 'create-picture' slug=object.slug %}" class="link-button">Add New Photo</a>
+        {% endif %}
     </div>
     <div class="working-hours">
         <h2>Working Hours</h2>
