@@ -4,8 +4,11 @@ Barberbook Logout Page
 {% endblock %}
 
 {% block content %}
-    <h1>{{ request.user }}</h1>
-    <h2>Are you sure you want to log out?</h2>
-    <a href="?confirm" class="link-button">Confirm Logout</a>
-    <a href="{% url 'home-page' %}">Cancel</a>
+    <div class="logout-wrapper">
+        <h1>{{ request.user }}</h1>
+        <h2>Are you sure you want to log out?</h2>
+        <a href="?confirm" class="link-button">Confirm Logout</a>
+        <a href="{% url 'home-page' %}">Cancel</a>
+    </div>
+
 {% endblock %}

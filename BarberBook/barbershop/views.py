@@ -3,13 +3,14 @@ from django.urls import reverse_lazy
 from django.contrib.auth import mixins as auth_mixins
 from django.views import generic as views
 
+
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService, BarbershopWorkingHours
 
 
 class EditBarbershopProfileView(auth_mixins.LoginRequiredMixin, views.UpdateView):
     model = BarbershopProfile
     template_name = 'barbershop/edit-barbershop.html'
-    fields = ['name', 'address', 'city', 'about', 'barbershop_picture']
+    fields = ['name', 'address', 'city', 'geolocation_latitude', 'geolocation_longitude', 'about', 'barbershop_picture']
 
     def get_success_url(self):
         barbershop = BarbershopProfile.objects.get(user=self.request.user)

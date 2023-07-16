@@ -24,6 +24,18 @@ class BarbershopProfile(models.Model):
         null=False,
         blank=False
     )
+    geolocation_latitude = models.DecimalField(
+        max_digits=18,
+        decimal_places=15,
+        null=True,
+        blank=True
+        )
+    geolocation_longitude = models.DecimalField(
+        max_digits=18,
+        decimal_places=15,
+        null=True,
+        blank=True
+        )
     about = models.TextField(
         null=True,
         blank=True
@@ -46,20 +58,20 @@ class BarbershopProfile(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        if not self.pk:
+            for day in range(1, 8):
+                BarbershopWorkingHours.objects.create(
+                    barbershop=self,
+                    day=day,
+                    start_time=None,
+                    end_time=None
+                )
         if self.name:
             self.slug = slugify(self.name)
         else:
             self.name = slugify(self.user)
             self.slug = slugify(self.user)
         super().save(*args, **kwargs)
-
-        for day in range(1, 8):
-            BarbershopWorkingHours.objects.create(
-                barbershop=self,
-                day=day,
-                start_time=None,
-                end_time=None
-            )
 
 
 class ServiceCategory(models.Model):
@@ -119,8 +131,6 @@ class BarbershopWorkingHours(models.Model):
             time_slot = time(hour, minute)
             display_text = time_slot.strftime('%H:%M')
             TIME_SLOT_CHOICES.append((time_slot, display_text))
-
-
 
     barbershop = models.ForeignKey(
         BarbershopProfile,

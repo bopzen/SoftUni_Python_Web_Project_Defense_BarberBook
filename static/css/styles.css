@@ -53,7 +53,7 @@ header {
     align-items: center;
     background: black;
     color: white;
-    padding: 1rem 3rem;
+    padding: 0.5rem 3rem;
 }
 
 header nav ul {
@@ -107,7 +107,7 @@ footer {
     justify-content: space-around;
     background: black;
     color: white;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
 }
 
 footer a {
@@ -177,4 +177,14 @@ button {
 .closed-sign {
     height: 30px;
     transform: rotate(10deg);
+}
+
+.logout-wrapper {
+    float: right;
+}
+
+#map {
+    width: 400px;
+    height: 400px;
+    border: 3px solid black;
 }
