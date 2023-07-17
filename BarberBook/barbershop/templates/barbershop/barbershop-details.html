@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load barbershop_custom_filters %}
-
-
+{% load custom_filters %}
 
 {% block title %}
 Barberbook Barbershop Details Page
@@ -37,6 +36,10 @@ Barberbook Barbershop Details Page
             {% if object.pk == request.user.pk %}
                 <a href="{% url 'edit-barbershop' slug=object.slug %}" class="link-button">Edit Profile</a>
                 <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>
+            {% endif %}
+
+            {% if request.user.is_authenticated and request.user|get_role == 'Client'%}
+                <h3><a href="{% url 'create-reservation' slug=object.slug %}">Make a reservation</a></h3>
             {% endif %}
         </div>
 
@@ -82,6 +85,8 @@ Barberbook Barbershop Details Page
             <a href="{% url 'create-picture' slug=object.slug %}" class="link-button">Add New Photo</a>
         {% endif %}
     </div>
+
+
     <div class="working-hours">
         <h2>Working Hours</h2>
         <ul>

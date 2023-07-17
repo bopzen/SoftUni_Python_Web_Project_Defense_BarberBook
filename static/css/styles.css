@@ -197,3 +197,8 @@ button {
     height: 600px;
     border: 6px solid black;
 }
+
+h1, h2, h3 {
+    font-family: Rye, sans-serif;
+    padding: 0.5rem 0.5rem;
+}

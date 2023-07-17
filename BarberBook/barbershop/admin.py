@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from BarberBook.barbershop.models import BarbershopProfile, ServiceCategory, BarbershopService, BarbershopWorkingHours
+from BarberBook.barbershop.models import BarbershopProfile, ServiceCategory, BarbershopService, BarbershopWorkingHours, \
+    BarbershopPicture
 
 
 @admin.register(BarbershopProfile)
@@ -18,4 +19,8 @@ class AdminBarbershopService(admin.ModelAdmin):
 
 @admin.register(BarbershopWorkingHours)
 class AdminBarbershopWorkingHours(admin.ModelAdmin):
+    pass
+
+@admin.register(BarbershopPicture)
+class AdminBarbershopPicture(admin.ModelAdmin):
     pass

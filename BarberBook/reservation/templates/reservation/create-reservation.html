@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BarberBook Create Reservation Page
+{% endblock %}
+
+{% block content %}
+    <h1>Reservation Page</h1>
+    <form action="{% url 'create-reservation' slug=barbershop.slug %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Reserve</button>
+    </form>
+
+{% endblock %}
