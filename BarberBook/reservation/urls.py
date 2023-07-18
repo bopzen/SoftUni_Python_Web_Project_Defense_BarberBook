@@ -1,6 +1,14 @@
 from django.urls import path, include
-from BarberBook.reservation.views import CreateReservation
+from BarberBook.reservation.views import select_barbershop, select_barbershop_service, select_barber, select_date, \
+    select_time, create_reservation
 
 urlpatterns = [
-    path('create/<slug:slug>/', CreateReservation.as_view(), name='create-reservation')
+    path('create/', include([
+        path('select-barbershop/<slug:slug>/', select_barbershop, name='step1-select-barbershop'),
+        path('select-barbershop-service/', select_barbershop_service, name='step2-select-barbershop-service'),
+        path('select-barber/', select_barber, name='step3-select-barber'),
+        path('select-date/', select_date, name='step4-select-date'),
+        path('select-time/', select_time, name='step5-select-time'),
+        path('confirm-reservation/', create_reservation, name='create-reservation')
+    ])),
 ]

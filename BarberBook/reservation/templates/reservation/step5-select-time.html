@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BarberBook Reservation Select Date Page
+{% endblock %}
+
+
+{% block content %}
+    <h1>Step 5: Select Time</h1>
+    <p>Client username: {{ client }}</p>
+    <p>Barbershop: {{ barbershop.name }}</p>
+    <p>Service: {{ service }}</p>
+    <p>Barber {{ barber }}</p>
+    <p>Date: {{ reservation_date }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Next</button>
+    </form>
+    <a href="{% url 'step4-select-date' %}" class="link-button"> < Back</a>
+
+{% endblock %}

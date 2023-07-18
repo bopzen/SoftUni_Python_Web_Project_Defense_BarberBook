@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BarberBook Reservation Select Barbershop Service Page
+{% endblock %}
+
+{% block content %}
+    <h1>Step 2: Select Service</h1>
+    <p>Client username: {{ client }}</p>
+    <p>Barbershop: {{ barbershop.name }}</p>
+    <form action="{% url 'step2-select-barbershop-service' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Next Step</button>
+    </form>
+
+    <a href="{% url 'step1-select-barbershop' slug=barbershop.slug %}" class="link-button"> < Back</a>
+
+
+{% endblock %}

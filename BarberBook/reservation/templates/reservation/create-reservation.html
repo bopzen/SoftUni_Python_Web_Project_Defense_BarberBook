@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    BarberBook Create Reservation Page
+    BarberBook Confirm Reservation Page
 {% endblock %}
 
+
 {% block content %}
-    <h1>Reservation Page</h1>
-    <form action="{% url 'create-reservation' slug=barbershop.slug %}" method="post">
+    <h1>Step 6: Confirm Reservation</h1>
+        <p>Client username: {{ client }}</p>
+        <p>Barbershop: {{ barbershop.name }}</p>
+        <p>Service: {{ service }}</p>
+        <p>Barber {{ barber }}</p>
+        <p>Date: {{ reservation_date }}</p>
+        <p>Time: {{ reservation_time }}</p>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button>Reserve</button>
+        <button type="submit">Create Reservation</button>
     </form>
+    <a href="{% url 'step5-select-time' %}" class="link-button"> < Back</a>
 
 {% endblock %}

@@ -38,8 +38,8 @@ Barberbook Barbershop Details Page
                 <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>
             {% endif %}
 
-            {% if request.user.is_authenticated and request.user|get_role == 'Client'%}
-                <h3><a href="{% url 'create-reservation' slug=object.slug %}">Make a reservation</a></h3>
+            {% if request.user.is_authenticated %}
+                <h3><a href="{% url 'step1-select-barbershop' slug=object.slug %}">Make a reservation</a></h3>
             {% endif %}
         </div>
 
