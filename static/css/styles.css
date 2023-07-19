@@ -185,7 +185,7 @@ button {
 
 #map {
     width: 400px;
-    height: 400px;
+    height: 300px;
     border: 3px solid black;
 }
 
@@ -206,5 +206,16 @@ h1, h2, h3 {
 .select-date-form {
     display: flex;
     flex-direction: row;
+}
+
+.reservation-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.reserved-stamp {
+    height: 100px;
+    transform: rotate(20deg);
 }
 

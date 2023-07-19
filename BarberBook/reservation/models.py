@@ -22,7 +22,7 @@ class Reservation(models.Model):
             display_text = time_slot.strftime('%H:%M')
             TIME_SLOT_CHOICES.append((time_slot, display_text))
 
-    client = models.ForeignKey(
+    user = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE
     )

@@ -1,14 +1,5 @@
-import datetime
-
 from django import forms
-from django.db.models import Q
-from django.utils import timezone
-from django.utils.safestring import mark_safe
-from datetime import date, timedelta
-
 from .models import Reservation
-from ..barber.models import Barber
-from ..barbershop.models import BarbershopService
 
 
 class BarbershopServiceForm(forms.Form):
@@ -41,16 +32,16 @@ class TimeSelectionForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         time_slot_choices = kwargs.pop('choices', ())
-        super().__init__(*args, **kwargs)  # Update this line
+        super().__init__(*args, **kwargs)
         self.fields['time_slot'].choices = time_slot_choices
 
 
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ('client', 'barbershop', 'service', 'barber', 'date', 'time')
+        fields = ('user', 'barbershop', 'service', 'barber', 'date', 'time')
         widgets = {
-            'client': forms.HiddenInput(),
+            'user': forms.HiddenInput(),
             'barbershop': forms.HiddenInput(),
             'service': forms.HiddenInput(),
             'barber': forms.HiddenInput(),

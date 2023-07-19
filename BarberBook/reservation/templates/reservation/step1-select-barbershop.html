@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>Step 1: Select Barbershop</h1>
-    <p>Client username: {{ client.username }}</p>
+    <p>Client username: {{ user.username }}</p>
     <p>Barbershop: {{ barbershop.name }}</p>
 
     <a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button"> < Back to Barbershop Profile</a>

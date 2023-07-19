@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>Step 2: Select Service</h1>
-    <p>Client username: {{ client }}</p>
+    <p>Client username: {{ user }}</p>
     <p>Barbershop: {{ barbershop.name }}</p>
     <form action="{% url 'step2-select-barbershop-service' %}" method="post">
         {% csrf_token %}
