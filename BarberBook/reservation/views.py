@@ -265,7 +265,24 @@ class ReservationsListView(auth_mixins.LoginRequiredMixin, views.ListView):
         else:
             queryset = Reservation.objects.none()
 
+        user_filter = self.request.GET.get('user_filter', None)
+        if user_filter:
+            queryset = queryset.filter(Q(user__username__icontains=user_filter))
+
+        date_filter = self.request.GET.get('date_filter')
+        if date_filter:
+            queryset = queryset.filter(date=date_filter)
+
+        barber_filter = self.request.GET.get('barber_filter')
+        if barber_filter:
+            queryset = queryset.filter(Q(barber__name__icontains=barber_filter))
+
+        barbershop_filter = self.request.GET.get('barbershop_filter')
+        if barbershop_filter:
+            queryset = queryset.filter(Q(barbershop__name__icontains=barbershop_filter))
+
         return queryset
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -292,19 +309,6 @@ class ReservationsListView(auth_mixins.LoginRequiredMixin, views.ListView):
         context['upcoming_reservations'] = upcoming_reservations_page
 
         return context
-
-
-class ReservationDeleteConfirmationView(views.View):
-    template_name = 'reservation/delete-confirmation.html'
-
-    def get(self, request, pk):
-        reservation = get_object_or_404(Reservation, pk=pk)
-        return render(request, self.template_name, {'reservation': reservation})
-
-    def post(self, request, pk):
-        reservation = get_object_or_404(Reservation, pk=pk)
-        reservation.delete()
-        return redirect('reservation-list')
 
 
 class DeleteReservationView(views.DeleteView):

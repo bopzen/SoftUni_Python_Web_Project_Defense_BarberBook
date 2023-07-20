@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from BarberBook.barbershop.views import EditBarbershopProfileView, BarbershopProfileDetailsView, barbershop_list, \
+from BarberBook.barbershop.views import EditBarbershopProfileView, BarbershopProfileDetailsView, BarbershopListView, \
     CreateBarbershopServiceView, EditBarbershopServiceView, DeleteBarbershopServiceView, \
     BarbershopServicesDetailsView, EditBarbershopWorkingHoursView, BarbershopWorkingHoursDetailsView, \
     CreateBarbershopPictureView, DeleteBarbershopPictureView, BarbershopPictureDetailsView
@@ -21,5 +21,5 @@ urlpatterns = [
         path('<int:pk>/delete/', DeleteBarbershopPictureView.as_view(), name='delete-picture'),
         path('<int:pk>/details/', BarbershopPictureDetailsView.as_view(), name='picture-details'),
     ])),
-    path('all/', barbershop_list, name='barbershop-list')
+    path('all/', BarbershopListView.as_view(), name='barbershop-list')
 ]

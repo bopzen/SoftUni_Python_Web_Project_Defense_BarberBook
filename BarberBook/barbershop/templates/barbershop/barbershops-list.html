@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Barbershops Page
@@ -6,4 +7,48 @@
 
 {% block content %}
     <h1>Barbershop list Page</h1>
+        <div class="list-container">
+            {% for barbershop in barbershops %}
+            <div class="barbershop-card">
+                <img src="{% static 'images/vintage_decorative_corner_pattern.png' %}" alt="corner" class="corner-left">
+
+                <a href="{% url 'step1-select-barbershop' slug=barbershop.slug %}"><img src="{% static 'images/book_now_stamp_2.png' %}" alt="book-now" class="book-now"></a>
+                <div class="barbershop-info">
+                    <h2>{{ barbershop.name }}</h2>
+                    <br><br>
+                    <p>{{ barbershop.address }}</p>
+                    <p>{{ barbershop.city }}</p>
+                    <p><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Details</a></p>
+                </div>
+                <div class="barbershop-profile-picture">
+                    {% if object.barbershop_picture %}
+                        <img src="{{ barbershop.barbershop_picture.url }}" class="profile-picture" alt="barbershop-profile_picture">
+                    {% else %}
+                        <img src="{% static 'images/barbershop-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture">
+                    {% endif %}
+                </div>
+                <img src="{% static 'images/vintage_decorative_corner_pattern.png' %}" alt="corner" class="corner-right">
+            </div>
+        {% endfor %}
+        </div>
+
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
 {% endblock %}

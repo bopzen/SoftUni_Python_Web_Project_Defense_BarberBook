@@ -71,7 +71,8 @@ header a {
     flex-direction: row;
     align-items: center;
     font-size: 2rem;
-    font-family: Rye, sans-serif
+    font-family: Rye, sans-serif;
+    font-weight: 500;
 }
 .home-logo img {
     width: 60px;
@@ -198,9 +199,10 @@ button {
     border: 6px solid black;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
     font-family: Rye, sans-serif;
-    padding: 0.5rem 0.5rem;
+    /*font-weight: 500;*/
+    padding: 0.5rem 0;
 }
 
 .select-date-form {
@@ -247,4 +249,49 @@ h1, h2, h3 {
     border-radius: 4px;
     padding: 1px 6px;
     margin: 0 4px;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.barbershop-card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
+    height: 250px;
+    padding: 2rem;
+    margin: 1rem;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+.corner-left {
+    height: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 10;
+    transform: rotate(270deg);
+}
+.corner-right {
+    height: 50%;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    z-index: 10;
+    transform: rotate(90deg);
+}
+
+.book-now {
+    position: absolute;
+    width: 170px;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10;
+    transform: rotate(-20deg);
 }

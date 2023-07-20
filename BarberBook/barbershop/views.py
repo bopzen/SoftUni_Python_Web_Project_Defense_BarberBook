@@ -34,8 +34,11 @@ class BarbershopProfileDetailsView(views.DetailView):
     context_object_name = 'barbershop_profile'
 
 
-def barbershop_list(request):
-    return render(request, 'barbershop/barbershops-list.html')
+class BarbershopListView(views.ListView):
+    model = BarbershopProfile
+    template_name = 'barbershop/barbershops-list.html'
+    context_object_name = 'barbershops'
+    paginate_by = 2
 
 
 class CreateBarbershopServiceView(auth_mixins.LoginRequiredMixin, views.CreateView):

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block title %}
     BarberBook Reservation List Page
@@ -6,6 +7,28 @@
 
 {% block content %}
     <h1>Reservations List</h1>
+
+    {% if request.user|get_role == 'Client' %}
+        <a href="{% url 'client-details' %}" class="link-button">Back to Profile</a>
+    {% else %}
+        <a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}" class="link-button">Back to Profile</a>
+    {% endif %}
+    <form method="GET">
+        {% if request.user|get_role == 'Client' %}
+            <label for="barbershop_filter">Filter by Barbershop:</label>
+            <input type="text" name="barbershop_filter" id="barbershop_filter" value="{{ request.GET.barbershop_filter }}">
+        {% else %}
+            <label for="user_filter">Filter by User:</label>
+            <input type="text" name="user_filter" id="user_filter" value="{{ request.GET.user_filter }}">
+        {% endif %}
+        <label for="barber_filter">Filter by Barber:</label>
+        <input type="text" name="barber_filter" id="barber_filter" class="form-control" value="{{ request.GET.barber_filter }}">
+
+        <label for="date_filter">Filter by Date:</label>
+        <input type="date" name="date_filter" id="date_filter" value="{{ request.GET.date_filter }}">
+
+        <button type="submit">Apply Filters</button>
+    </form>
 
 
 <h2>Upcoming Reservations</h2>
@@ -33,7 +56,7 @@
                 <td>{{ reservation.time }}</td>
                 <td>{{ reservation.user }}</td>
                 <td>{{ reservation.user.email }}</td>
-                <td>{{ reservation.barbershop }}</td>
+                <td><a href="{% url 'barbershop-details' slug=reservation.barbershop.slug %}">{{ reservation.barbershop }}</a></td>
                 <td>{{ reservation.barber }}</td>
                 <td>{{ reservation.service }}</td>
                 <td>
@@ -95,7 +118,7 @@
                 <td>{{ reservation.time }}</td>
                 <td>{{ reservation.user }}</td>
                 <td>{{ reservation.user.email }}</td>
-                <td>{{ reservation.barbershop }}</td>
+                <td><a href="{% url 'barbershop-details' slug=reservation.barbershop.slug %}">{{ reservation.barbershop }}</a></td>
                 <td>{{ reservation.barber }}</td>
                 <td>{{ reservation.service }}</td>
             </tr>
