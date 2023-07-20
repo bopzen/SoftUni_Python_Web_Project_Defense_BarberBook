@@ -5,9 +5,7 @@ from BarberBook.barber.models import Barber
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService
 from BarberBook.client.models import ClientProfile
 
-from datetime import date, time, timedelta
-from django.utils import timezone
-from django.core import exceptions
+from datetime import time
 
 
 UserModel = get_user_model()
@@ -50,4 +48,4 @@ class Reservation(models.Model):
     )
 
     def __str__(self):
-        return f'Reservation for Client: {self.client} Barber: {self.barber} at {self.barbershop} on {self.date} {self.time}'
+        return f'Reservation for Client: {self.user} Barber: {self.barber} at {self.barbershop} on {self.date} {self.time}'

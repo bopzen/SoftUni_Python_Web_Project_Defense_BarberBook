@@ -1,18 +1,18 @@
-
-
 from datetime import datetime, timedelta
-
-
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy, reverse
 
 from BarberBook.barber.models import Barber
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService
 from BarberBook.reservation.forms import BarbershopServiceForm, BarbershopBarberForm, DateSelectionForm, \
     TimeSelectionForm, ReservationForm
 from BarberBook.reservation.models import Reservation
+from django.views import generic as views
+from django.contrib.auth import mixins as auth_mixins
 
 UserModel = get_user_model()
 
@@ -244,3 +244,79 @@ def reservation_success(request):
     }
 
     return render(request, 'reservation/reservation-success.html', context)
+
+
+class ReservationsListView(auth_mixins.LoginRequiredMixin, views.ListView):
+    model = Reservation
+    template_name = 'reservation/reservations-list.html'
+    context_object_name = 'reservations'
+    paginate_by = 3
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_authenticated:
+            if hasattr(user, 'clientprofile'):
+                queryset = Reservation.objects.filter(user=user.id)
+            elif hasattr(user, 'barbershopprofile'):
+                queryset = Reservation.objects.filter(barbershop=user.barbershopprofile)
+            else:
+                queryset = Reservation.objects.none()
+        else:
+            queryset = Reservation.objects.none()
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_datetime = datetime.now()
+
+        past_reservations = self.get_queryset().filter(
+            Q(date__lt=current_datetime.date()) |
+            Q(date=current_datetime.date(), time__lte=current_datetime.time())
+        ).order_by('-date', '-time')
+
+        upcoming_reservations = self.get_queryset().filter(
+            Q(date__gt=current_datetime.date()) |
+            Q(date=current_datetime.date(), time__gt=current_datetime.time())
+        ).order_by('date', 'time')
+
+        paginator_past = Paginator(past_reservations, self.paginate_by)
+        page_number_past = self.request.GET.get('page_past')
+        past_reservations_page = paginator_past.get_page(page_number_past)
+        context['past_reservations'] = past_reservations_page
+
+        paginator_upcoming = Paginator(upcoming_reservations, self.paginate_by)
+        page_number_upcoming = self.request.GET.get('page_upcoming')
+        upcoming_reservations_page = paginator_upcoming.get_page(page_number_upcoming)
+        context['upcoming_reservations'] = upcoming_reservations_page
+
+        return context
+
+
+class ReservationDeleteConfirmationView(views.View):
+    template_name = 'reservation/delete-confirmation.html'
+
+    def get(self, request, pk):
+        reservation = get_object_or_404(Reservation, pk=pk)
+        return render(request, self.template_name, {'reservation': reservation})
+
+    def post(self, request, pk):
+        reservation = get_object_or_404(Reservation, pk=pk)
+        reservation.delete()
+        return redirect('reservation-list')
+
+
+class DeleteReservationView(views.DeleteView):
+    model = Reservation
+    template_name = 'reservation/delete-reservation.html'
+
+    def get_success_url(self):
+        user = self.request.user
+        return reverse_lazy('reservation-list', kwargs={'pk': user.pk})
+
+    def test_func(self):
+        reservation = self.get_object()
+        return self.request.user == reservation.user or self.request.user == reservation.barbershop.user
+
+

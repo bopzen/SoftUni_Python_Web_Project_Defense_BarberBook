@@ -6,6 +6,7 @@ Barberbook Client Details Page
 {% endblock %}
 
 {% block content %}
+
     <h1>{{ request.user }}</h1>
     <h1>Profile Details</h1>
     {% if object.profile_picture %}
@@ -24,5 +25,7 @@ Barberbook Client Details Page
     </ul>
     <a href="{% url 'edit-client' %}" class="link-button">Edit Profile</a>
     <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>
+    <a href="{% url 'reservation-list' pk=object.pk %}" class="link-button">Manage Reservations</a>
+
 
 {% endblock %}

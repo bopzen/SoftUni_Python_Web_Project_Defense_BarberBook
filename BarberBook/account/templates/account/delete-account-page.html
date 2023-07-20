@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-Barberbook Delete Account Page
+    Barberbook Delete Account Page
 {% endblock %}
 
 {% block content %}
@@ -9,6 +9,6 @@ Barberbook Delete Account Page
     <form method="post">
         {% csrf_token %}
         <button>Delete</button>
-        <a href="{% url 'client-details' %}">Cancel</a>
     </form>
+    <a href="{% url 'client-details' %}">Cancel</a>
 {% endblock %}
