@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import mixins as auth_mixins
@@ -5,6 +6,7 @@ from django.views import generic as views
 
 
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService, BarbershopWorkingHours, BarbershopPicture
+from BarberBook.review.models import Review
 
 
 class EditBarbershopProfileView(auth_mixins.LoginRequiredMixin, views.UpdateView):
@@ -33,12 +35,21 @@ class BarbershopProfileDetailsView(views.DetailView):
     template_name = 'barbershop/barbershop-details.html'
     context_object_name = 'barbershop_profile'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        barbershop_rating = Review.objects.filter(barbershop=self.object.pk).aggregate(Avg('rating'))['rating__avg']
+        barbershop_reviews_count = Review.objects.filter(barbershop=self.object.pk).count()
+        context['barbershop_rating'] = barbershop_rating
+        context['barbershop_reviews_count'] = barbershop_reviews_count
+        return context
+
 
 class BarbershopListView(views.ListView):
     model = BarbershopProfile
     template_name = 'barbershop/barbershops-list.html'
     context_object_name = 'barbershops'
     paginate_by = 2
+
 
 
 class CreateBarbershopServiceView(auth_mixins.LoginRequiredMixin, views.CreateView):

@@ -41,7 +41,6 @@ body {
     height: 100%
 }
 main {
-    padding: 2rem 10rem;
     min-height: 70vh;
 }
 
@@ -294,4 +293,56 @@ h1, h2, h3, h4, h5, h6 {
     right: 30px;
     z-index: 10;
     transform: rotate(-20deg);
+}
+
+.intro-container{
+    height: 100px;
+    text-align: center;
+}
+.intro-container div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.cover-picture-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+.home-cover-picture {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 600px; /* Adjust the width as needed */
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-image: url('/static/images/hair-clipper-white.jpg'); /* Replace with your unfilled star image path */
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    background-image: url('/static/images/hair-clipper-black.jpg'); /* Replace with your filled star image path */
 }
