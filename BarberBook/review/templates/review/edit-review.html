@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}
+    Barberbook Edit Review for {{ object.barbershop.name }}
+{% endblock %}
+
+{% block content %}
+    <h1>Edit Review for {{ object.barbershop.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Review</button>
+    </form>
+    <a href="{% url 'client-reviews-list' pk=object.user.pk %}" class="link-button">Cancel</a>
+{% endblock %}

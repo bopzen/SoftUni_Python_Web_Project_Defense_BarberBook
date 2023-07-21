@@ -116,8 +116,9 @@ footer a {
 .main-footer-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 1rem 6rem;
 }
 .footer-section {
     text-align: center;
@@ -313,12 +314,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 .home-cover-picture {
     position: absolute;
-    top: -100px;
+    top: -120px;
     left: 0;
     width: 100%;
     object-fit: cover;
     z-index: -1;
 }
+
+.social-media {
+    font-size: 1.5rem;
+}
+
+.cover-picture-container {
+    color: rgba(255,255,255,0.9);
+    text-shadow: 3px 0 black, 0 -3px black, -3px 0 black, 0 3px black;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
+
 
 
 

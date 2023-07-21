@@ -311,7 +311,7 @@ class ReservationsListView(auth_mixins.LoginRequiredMixin, views.ListView):
         return context
 
 
-class DeleteReservationView(views.DeleteView):
+class DeleteReservationView(auth_mixins.LoginRequiredMixin, views.DeleteView):
     model = Reservation
     template_name = 'reservation/delete-reservation.html'
 

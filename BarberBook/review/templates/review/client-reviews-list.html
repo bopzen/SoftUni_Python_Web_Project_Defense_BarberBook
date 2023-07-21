@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Barberbook My Reviews
+{% endblock %}
+
+{% block content %}
+    <h1>My Reviews</h1>
+    <a href="{% url 'client-details' %}" class="link-button">Back to Client Profile</a>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <p>Time: {{ review.date_created }}</p>
+                    <p>Rating: {{ review.rating }}</p>
+                    <p>Comment: {{ review.comment }}</p>
+                    <p>By: {{ review.user }}</p>
+                    <a href="{% url 'edit-review' pk=review.pk %}" class="link-button">Edit Review</a>
+                    <a href="{% url 'delete-review' pk=review.pk %}" class="link-button">Delete Review</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if is_paginated %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+    {% else %}
+        <p>No reviews yet for {{ barbershop.name }}.</p>
+    {% endif %}
+
+{% endblock %}

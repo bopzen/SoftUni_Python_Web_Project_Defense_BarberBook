@@ -28,5 +28,9 @@ class Review(models.Model):
     )
     comment = models.TextField()
 
+    date_created = models.DateTimeField(
+        auto_now_add=True
+    )
+
     def __str__(self):
         return f'Review by {self.user} for {self.barbershop.name}'

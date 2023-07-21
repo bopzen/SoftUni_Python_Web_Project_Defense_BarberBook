@@ -26,6 +26,8 @@ Barberbook Client Details Page
     <a href="{% url 'edit-client' %}" class="link-button">Edit Profile</a>
     <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>
     <a href="{% url 'reservation-list' pk=object.pk %}" class="link-button">Manage Reservations</a>
+    <a href="{% url 'client-reviews-list' pk=object.pk %}" class="link-button">My Reviews</a>
+
 
 
 {% endblock %}

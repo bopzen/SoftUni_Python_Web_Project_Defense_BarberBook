@@ -32,12 +32,12 @@ Barberbook Barbershop Details Page
                 <li>About: {{ object.about }}</li>
                 <li>Barbers: {{ object.barber_set.count }}</li>
                 {% if barbershop_rating %}
-                    <p>Rating: {{ barbershop_rating|floatformat:1 }} ({{ barbershop_reviews_count }}
+                    <p>Rating: <a href="{% url 'barbershop-reviews-list' slug=object.slug %}">{{ barbershop_rating|floatformat:1 }} ({{ barbershop_reviews_count }}
                         {% if barbershop_reviews_count == 1 %}
                             review
                         {% else %}
                             reviews
-                        {% endif %})
+                        {% endif %})</a>
                     </p>
                 {% else %}
                     <p>No reviews yet.</p>
