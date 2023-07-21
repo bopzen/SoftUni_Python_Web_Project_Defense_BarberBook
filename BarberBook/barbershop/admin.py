@@ -19,7 +19,8 @@ class AdminBarbershopService(admin.ModelAdmin):
 
 @admin.register(BarbershopWorkingHours)
 class AdminBarbershopWorkingHours(admin.ModelAdmin):
-    pass
+    list_display = ['pk', 'barbershop', 'day', 'start_time', 'end_time']
+    list_filter = ['barbershop']
 
 @admin.register(BarbershopPicture)
 class AdminBarbershopPicture(admin.ModelAdmin):

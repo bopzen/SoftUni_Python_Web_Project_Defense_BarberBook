@@ -14,3 +14,9 @@ def home_page(request):
     return render(request, 'common/home.html', context)
 
 
+def map_page(request):
+    barbershops = BarbershopProfile.objects.all()
+    context = {
+        'barbershops': barbershops
+    }
+    return render(request, 'common/map-all-barbershops.html', context)

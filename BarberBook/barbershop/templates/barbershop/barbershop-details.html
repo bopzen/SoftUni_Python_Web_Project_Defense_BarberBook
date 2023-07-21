@@ -124,15 +124,25 @@ Barberbook Barbershop Details Page
     </div>
     {% if object.geolocation_latitude and object.geolocation_longitude %}
     <h3>Find us on the map</h3>
-    <div id="map"></div>
+    <div class="map-container-barbershop">
+        <div id="map"></div>
+    </div>
+
         <script>
           let map = L.map('map').setView([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], 17);
+
+          customIcon = L.icon({
+            iconUrl: "{% static 'images/point_barbershop_logo.png' %}",
+            iconSize: [64, 64], // Set the size of the icon image
+            iconAnchor: [16, 32], // Set the position of the icon's anchor point
+            popupAnchor: [16, -16], // Set the position of the popup relative to the icon
+            });
 
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 50,
           }).addTo(map);
-          let marker = L.marker([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}]).addTo(map);
+          let marker = L.marker([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], { icon: customIcon }).addTo(map);
           marker.bindPopup("<b>{{ object.name }}</b><br>{{ object.address }}");
           marker.openPopup();
         </script>

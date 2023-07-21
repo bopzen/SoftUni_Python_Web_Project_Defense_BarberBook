@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Barberbook Barbershop Map
+{% endblock %}
+
+{% block content %}
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+
+<!-- Leaflet JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <div id="map" style="width: 100%; height: 600px;"></div>
+
+    <script>
+        let map = L.map('map').setView([42.69615032408835, 23.32177127341931], 13);
+        let bounds = new L.LatLngBounds(); // Create bounds object
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 50,
+        }).addTo(map);
+        let lat
+        let lon
+        let name
+        let customIcon
+        let marker
+        let popupContent
+        let anchorElement
+        // Loop through barbershops and add markers
+        {% for barbershop in barbershops %}
+            lat = {{ barbershop.geolocation_latitude }};
+            lon = {{ barbershop.geolocation_longitude }};
+
+            // Custom marker icon
+            customIcon = L.icon({
+                iconUrl: "{% static 'images/point_barbershop_logo.png' %}",
+                iconSize: [80, 80], // Set the size of the icon image
+                iconAnchor: [20, 32], // Set the position of the icon's anchor point
+                popupAnchor: [20, -16], // Set the position of the popup relative to the icon
+            });
+
+
+            popupContent = `
+            <a href="{% url 'barbershop-details' slug=barbershop.slug %}">
+                <b>{{ barbershop.name }}</b><br>{{ barbershop.address }}
+            </a>`;
+
+
+            // Add marker to the map with custom icon
+            marker = L.marker([lat, lon], { icon: customIcon }).addTo(map);
+            marker.bindPopup(popupContent);
+
+
+
+            // Extend bounds with each barbershop location
+            bounds.extend([lat, lon]);
+        {% endfor %}
+
+        // Fit map view to encompass all barbershop locations
+        map.fitBounds(bounds);
+
+    </script>
+{% endblock %}

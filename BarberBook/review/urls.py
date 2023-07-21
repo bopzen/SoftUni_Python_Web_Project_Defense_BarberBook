@@ -8,5 +8,5 @@ urlpatterns = [
     path('reviews/<slug:slug>/', BarbershopReviewsListView.as_view(), name='barbershop-reviews-list'),
     path('my-reviews/<int:pk>/', ClientReviewsListView.as_view(), name='client-reviews-list'),
     path('edit-review/<int:pk>/', EditReviewView.as_view(), name='edit-review'),
-    path('delte-review/<int:pk>/', DeleteReviewView.as_view(), name='delete-review')
+    path('delete-review/<int:pk>/', DeleteReviewView.as_view(), name='delete-review')
 ]

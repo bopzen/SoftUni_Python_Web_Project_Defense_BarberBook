@@ -20,7 +20,7 @@ def create_review(request, slug):
     barbershop = BarbershopProfile.objects.get(slug=slug)
     user = request.user
     user_is_client = hasattr(user, 'clientprofile')
-    has_reserved = Reservation.objects.filter(user=user, barbershop=barbershop, date__lt=datetime.today()).exists()
+    has_reserved = Reservation.objects.filter(user=user, barbershop=barbershop, date__lte=datetime.today(), time__lt=datetime.now()).exists()
     has_reviewed = Review.objects.filter(user=user, barbershop=barbershop).exists()
 
     if request.method == 'POST':
