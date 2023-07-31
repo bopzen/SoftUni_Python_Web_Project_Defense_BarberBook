@@ -11,6 +11,7 @@
         <ul>
             {% for review in reviews %}
                 <li>
+                    <p>Barbershop: {{ review.barbershop }}</p>
                     <p>Time: {{ review.date_created }}</p>
                     <p>Rating: {{ review.rating }}</p>
                     <p>Comment: {{ review.comment }}</p>

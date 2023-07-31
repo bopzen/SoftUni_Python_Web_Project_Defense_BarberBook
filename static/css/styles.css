@@ -41,8 +41,12 @@ body {
     height: 100%
 }
 main {
-    min-height: 70vh;
+    height: 100vh;
 }
+main h1 {
+    font-size: 3rem;
+}
+
 
 header {
     width: 100%;
@@ -145,18 +149,93 @@ a:hover {
 
 
 button {
-    font-size: 1rem;
+    font-size: 1.25rem;
     background: black;
     color: white;
+    margin: 8px;
     padding: 4px 16px;
-    border-radius: 16px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
 }
+.main-container {
+    margin: 3rem 6rem;
+}
+
+.main-form-container {
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-barbershop-list-container {
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    border: 2px solid black;
+    border-radius: 6px;
+    padding: 3rem;
+    box-shadow: 5px 10px 8px #888888;
+}
+.form-container h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.form-container form p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.5rem;
+}
+.form-container form input {
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+div #id_role {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+}
+.form-container form label {
+    font-weight: bold;
+}
+.form-buttons {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 
 .profile-picture {
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+.profile-picture-card {
     height: 100px;
     border: 2px solid black;
+    border-radius: 6px;
 }
 .profile-picture-thumbnail {
     width: 50px;
@@ -177,7 +256,7 @@ button {
 .barbershop-details-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .closed-sign {
@@ -193,6 +272,8 @@ button {
     width: 400px;
     height: 300px;
     border: 3px solid black;
+    border-radius: 6px;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 
@@ -274,7 +355,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2rem;
     margin: 1rem;
     border: 2px solid black;
-    border-radius: 3px;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 .corner-left {
@@ -304,19 +387,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .intro-container{
-    height: 100px;
+    height: 200px;
     text-align: center;
 }
 .intro-container div {
     display: flex;
     flex-direction: row;
+    gap: 2rem;
     justify-content: space-evenly;
 }
 
 .cover-picture-container {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.wall-picture-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
 }
 .home-cover-picture {
@@ -327,6 +418,16 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
     z-index: -1;
 }
+
+.white-wall-picture {
+    position: absolute;
+    top: -120px;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
 
 .social-media {
     font-size: 1.5rem;
@@ -339,6 +440,9 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     text-align: center;
 }
+
+
+
 
 
 

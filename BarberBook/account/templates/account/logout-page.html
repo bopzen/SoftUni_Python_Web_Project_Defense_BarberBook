@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Barberbook Logout Page
 {% endblock %}
 
 {% block content %}
-    <div class="logout-wrapper">
-        <h1>{{ request.user }}</h1>
-        <h2>Are you sure you want to log out?</h2>
-        <a href="?confirm" class="link-button">Confirm Logout</a>
-        <a href="{% url 'home-page' %}">Cancel</a>
+        <div class="wall-picture-container">
+        <div class="main-container">
+        <div class="logout-wrapper">
+            <h1>{{ request.user }}</h1>
+            <h2>Are you sure you want to log out?</h2>
+            <button><a href="?confirm" class="link-button">Confirm Logout</a></button>
+            <button><a href="javascript:history.go(-1);">Cancel</a></button>
+        </div>
     </div>
-
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

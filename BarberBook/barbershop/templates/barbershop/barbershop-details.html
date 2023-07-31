@@ -15,136 +15,142 @@ Barberbook Barbershop Details Page
 <!-- Leaflet JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
 
-    <h1>{{ request.user }}</h1>
-    <div class="barbershop-details-wrapper">
-        <div class="barbeshop-details">
-            <h1>Barbershop Details</h1>
-                {% if object.barbershop_picture %}
-                    <img src="{{ object.barbershop_picture.url }}" class="profile-picture" alt="barbershop-profile_picture">
-                {% else %}
-                    <img src="{% static 'images/barbershop-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture">
-                {% endif %}
-            <ul>
-                <li>Email: {{ object.user.email }}</li>
-                <li>Name: {{ object.name }}</li>
-                <li>Address: {{ object.address }}</li>
-                <li>City: {{ object.city }}</li>
-                <li>About: {{ object.about }}</li>
-                <li>Barbers: {{ object.barber_set.count }}</li>
-                {% if barbershop_rating %}
-                    <p>Rating: <a href="{% url 'barbershop-reviews-list' slug=object.slug %}">{{ barbershop_rating|floatformat:1 }} ({{ barbershop_reviews_count }}
-                        {% if barbershop_reviews_count == 1 %}
-                            review
-                        {% else %}
-                            reviews
-                        {% endif %})</a>
-                    </p>
-                {% else %}
-                    <p>No reviews yet.</p>
-                {% endif %}
-            </ul>
-            {% if object.pk == request.user.pk %}
-                <a href="{% url 'edit-barbershop' slug=object.slug %}" class="link-button">Edit Profile</a>
-                <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>
-                <a href="{% url 'reservation-list' pk=object.pk %}" class="link-button">Manage Reservations</a>
-            {% endif %}
+    <div class="wall-picture-container">
+         <div class="main-container">
+        <h1>Barbershop Details</h1>
 
-            {% if request.user.is_authenticated %}
-                <h3><a href="{% url 'step1-select-barbershop' slug=object.slug %}">Make a reservation</a></h3>
-                <h4><a href="{% url 'create-review' slug=object.slug %}">Review Barbershop</a></h4>
-
-            {% endif %}
-        </div>
-
-        <div class="services">
-            <h2>Services</h2>
-            <ul>
-                {% for service in object.barbershopservice_set.all %}
-                    {% if object.pk == request.user.pk %}
-                        <li><a href="{% url 'service-details' slug=object.slug pk=service.pk %}">{{ service.service_name }} - {{ service.price }} lv.</a></li>
+        <div class="barbershop-details-wrapper">
+            <div class="barbeshop-details">
+                    <h2>{{ object.name }}</h2>
+                    {% if object.barbershop_picture %}
+                        <img src="{{ object.barbershop_picture.url }}" class="profile-picture" alt="barbershop-profile_picture">
                     {% else %}
-                        <li>{{ service.service_name }} - {{ service.price }} lv.</li>
+                        <img src="{% static 'images/barbershop-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture">
                     {% endif %}
-                {% empty %}
-                    <li>This barbershop has no services yet</li>
-                {% endfor %}
-            </ul>
-            {% if object.pk == request.user.pk %}
-                <a href="{% url 'create-service' slug=object.slug %}" class="link-button">Add New Service</a>
-            {% endif %}
-        </div>
-
-        <div class="barbers-list">
-            <h2>Barbers</h2>
-            <ul>
-                {% for barber in object.barber_set.all %}
-                    <li><a href="{% url 'barber-details' pk=barber.pk %}">{{ barber.name }}</a></li>
-                {% empty %}
-                    <li>This barbershop has no barbers</li>
-                {% endfor %}
-            </ul>
-            {% if object.pk == request.user.pk %}
-                <a href="{% url 'create-barber' %}" class="link-button">Add New Barber</a>
-            {% endif %}
-        </div>
-    </div>
-    <div class="barbershop-pictures">
-        {% for picture in object.barbershoppicture_set.all %}
-            <a href="{% url 'picture-details' slug=object.slug pk=picture.pk %}"><img src="{{ picture.image.url }}" alt="picture" class="barbershop-photo-thumbnail"></a>
-        {% empty %}
-            <h3>No photo uploaded</h3>
-        {% endfor %}
-        {% if object.pk == request.user.pk %}
-            <a href="{% url 'create-picture' slug=object.slug %}" class="link-button">Add New Photo</a>
-        {% endif %}
-    </div>
-
-
-    <div class="working-hours">
-        <h2>Working Hours</h2>
-        <ul>
-            {% for weekday in object.barbershopworkinghours_set.all %}
+                <ul>
+                    <li>Email: {{ object.user.email }}</li>
+                    <li>Name: {{ object.name }}</li>
+                    <li>Address: {{ object.address }}</li>
+                    <li>City: {{ object.city }}</li>
+                    <li>About: {{ object.about }}</li>
+                    <li>Barbers: {{ object.barber_set.count }}</li>
+                    {% if barbershop_rating %}
+                        <p>Rating: <a href="{% url 'barbershop-reviews-list' slug=object.slug %}">{{ barbershop_rating|floatformat:1 }} ({{ barbershop_reviews_count }}
+                            {% if barbershop_reviews_count == 1 %}
+                                review
+                            {% else %}
+                                reviews
+                            {% endif %})</a>
+                        </p>
+                    {% else %}
+                        <p>No reviews yet.</p>
+                    {% endif %}
+                </ul>
                 {% if object.pk == request.user.pk %}
-                    <a href="{% url 'working-hours-details' slug=object.slug pk=weekday.pk %}">
+                    <a href="{% url 'edit-barbershop' slug=object.slug %}" class="link-button">Edit Profile</a>
+                    <a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a>
+                    <a href="{% url 'reservation-list' pk=object.pk %}" class="link-button">Manage Reservations</a>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                    <h3><a href="{% url 'step1-select-barbershop' slug=object.slug %}">Make a reservation</a></h3>
+                    <h4><a href="{% url 'create-review' slug=object.slug %}">Review Barbershop</a></h4>
+
+                {% endif %}
+            </div>
+
+            <div class="services">
+                <h2>Services</h2>
+                <ul>
+                    {% for service in object.barbershopservice_set.all %}
+                        {% if object.pk == request.user.pk %}
+                            <li><a href="{% url 'service-details' slug=object.slug pk=service.pk %}">{{ service.service_name }} - {{ service.price }} lv.</a></li>
+                        {% else %}
+                            <li>{{ service.service_name }} - {{ service.price }} lv.</li>
+                        {% endif %}
+                    {% empty %}
+                        <li>This barbershop has no services yet</li>
+                    {% endfor %}
+                </ul>
+                {% if object.pk == request.user.pk %}
+                    <a href="{% url 'create-service' slug=object.slug %}" class="link-button">Add New Service</a>
+                {% endif %}
+            </div>
+
+            <div class="barbers-list">
+                <h2>Barbers</h2>
+                <ul>
+                    {% for barber in object.barber_set.all %}
+                        <li><a href="{% url 'barber-details' pk=barber.pk %}">{{ barber.name }}</a></li>
+                    {% empty %}
+                        <li>This barbershop has no barbers</li>
+                    {% endfor %}
+                </ul>
+                {% if object.pk == request.user.pk %}
+                    <a href="{% url 'create-barber' %}" class="link-button">Add New Barber</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="barbershop-pictures">
+            {% for picture in object.barbershoppicture_set.all %}
+                <a href="{% url 'picture-details' slug=object.slug pk=picture.pk %}"><img src="{{ picture.image.url }}" alt="picture" class="barbershop-photo-thumbnail"></a>
+            {% empty %}
+                <h3>No photo uploaded</h3>
+            {% endfor %}
+            {% if object.pk == request.user.pk %}
+                <a href="{% url 'create-picture' slug=object.slug %}" class="link-button">Add New Photo</a>
+            {% endif %}
+        </div>
+
+
+        <div class="working-hours">
+            <h2>Working Hours</h2>
+            <ul>
+                {% for weekday in object.barbershopworkinghours_set.all %}
+                    {% if object.pk == request.user.pk %}
+                        <a href="{% url 'working-hours-details' slug=object.slug pk=weekday.pk %}">
+                            {% if weekday.start_time and weekday.end_time %}
+                                <li>{{ weekday.day|weekday_name }}: {{ weekday.start_time }} - {{ weekday.end_time }}</li>
+                            {% else %}
+                                <li>{{ weekday.day|weekday_name }}: <img src="{% static 'images/closed_sign.jpg'%}" alt="closed" class="closed-sign"></li>
+                            {% endif %}
+                        </a>
+                    {% else %}
                         {% if weekday.start_time and weekday.end_time %}
                             <li>{{ weekday.day|weekday_name }}: {{ weekday.start_time }} - {{ weekday.end_time }}</li>
                         {% else %}
                             <li>{{ weekday.day|weekday_name }}: <img src="{% static 'images/closed_sign.jpg'%}" alt="closed" class="closed-sign"></li>
                         {% endif %}
-                    </a>
-                {% else %}
-                    {% if weekday.start_time and weekday.end_time %}
-                        <li>{{ weekday.day|weekday_name }}: {{ weekday.start_time }} - {{ weekday.end_time }}</li>
-                    {% else %}
-                        <li>{{ weekday.day|weekday_name }}: <img src="{% static 'images/closed_sign.jpg'%}" alt="closed" class="closed-sign"></li>
                     {% endif %}
-                {% endif %}
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </ul>
+        </div>
+        {% if object.geolocation_latitude and object.geolocation_longitude %}
+        <h3>Find us on the map</h3>
+        <div class="map-container-barbershop">
+            <div id="map"></div>
+        </div>
+
+            <script>
+              let map = L.map('map').setView([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], 17);
+
+              customIcon = L.icon({
+                iconUrl: "{% static 'images/point_barbershop_logo.png' %}",
+                iconSize: [64, 64], // Set the size of the icon image
+                iconAnchor: [16, 32], // Set the position of the icon's anchor point
+                popupAnchor: [16, -16], // Set the position of the popup relative to the icon
+                });
+
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 50,
+              }).addTo(map);
+              let marker = L.marker([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], { icon: customIcon }).addTo(map);
+              marker.bindPopup("<b>{{ object.name }}</b><br>{{ object.address }}");
+              marker.openPopup();
+            </script>
+        {% endif %}
     </div>
-    {% if object.geolocation_latitude and object.geolocation_longitude %}
-    <h3>Find us on the map</h3>
-    <div class="map-container-barbershop">
-        <div id="map"></div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
     </div>
-
-        <script>
-          let map = L.map('map').setView([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], 17);
-
-          customIcon = L.icon({
-            iconUrl: "{% static 'images/point_barbershop_logo.png' %}",
-            iconSize: [64, 64], // Set the size of the icon image
-            iconAnchor: [16, 32], // Set the position of the icon's anchor point
-            popupAnchor: [16, -16], // Set the position of the popup relative to the icon
-            });
-
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 50,
-          }).addTo(map);
-          let marker = L.marker([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], { icon: customIcon }).addTo(map);
-          marker.bindPopup("<b>{{ object.name }}</b><br>{{ object.address }}");
-          marker.openPopup();
-        </script>
-    {% endif %}
 {% endblock %}

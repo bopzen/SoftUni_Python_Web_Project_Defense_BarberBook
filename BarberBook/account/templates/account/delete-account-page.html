@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Barberbook Delete Account Page
 {% endblock %}
 
 {% block content %}
-    <h1>{{ request.user }}</h1>
-    <h2>Are you sure you want to delete your profile?</h2>
-    <form method="post">
-        {% csrf_token %}
-        <button>Delete</button>
-    </form>
-    <a href="{% url 'client-details' %}">Cancel</a>
+    <div class="wall-picture-container">
+        <div class="main-container">
+        <h1>{{ request.user }}</h1>
+        <h2>Are you sure you want to delete your profile?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button>Delete</button>
+        </form>
+        <button><a href="{% url 'client-details' %}">Cancel</a></button>
+    </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

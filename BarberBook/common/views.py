@@ -9,7 +9,7 @@ def home_page(request):
     reservations_count = Reservation.objects.all().count()
     context = {
         'barbershops_count': barbershops_count,
-        'reservations_count': reservations_count
+        'reservations_count': reservations_count,
     }
     return render(request, 'common/home.html', context)
 
