@@ -38,6 +38,7 @@ class BarbershopProfile(models.Model):
         blank=True
         )
     about = models.TextField(
+        max_length=200,
         null=True,
         blank=True
     )

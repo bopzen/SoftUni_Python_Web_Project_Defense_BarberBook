@@ -41,7 +41,7 @@ body {
     height: 100%
 }
 main {
-    height: 100vh;
+    min-height: 100vh;
 }
 main h1 {
     font-size: 3rem;
@@ -149,7 +149,7 @@ a:hover {
 
 
 button {
-    font-size: 1.25rem;
+    font-size: 1rem;
     background: black;
     color: white;
     margin: 8px;
@@ -164,7 +164,7 @@ button:hover {
 
 
 .main-container {
-    margin: 3rem 6rem;
+    margin: 0.25rem 3rem;
 }
 
 .main-form-container {
@@ -175,8 +175,9 @@ button:hover {
     align-items: center;
 }
 
+
 .main-barbershop-list-container {
-    margin: 3rem;
+    margin: 0.25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -184,7 +185,7 @@ button:hover {
 }
 
 .main-review-container {
-    margin: 3rem;
+    margin: 0.25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -269,12 +270,32 @@ div #id_role {
 .barbershop-details-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+}
+.barbershop-details-wrapper2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.barbershop-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.working-hours ul {
+    line-height: 2.5;
 }
 
+.barbershop-pictures {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .closed-sign {
-    height: 30px;
-    transform: rotate(10deg);
+    height: 24px;
+    transform: rotate(8deg);
 }
 
 .logout-wrapper {
@@ -289,15 +310,18 @@ div #id_role {
     box-shadow: 5px 10px 8px #888888;
 }
 
-
-
 .barbershop-photo-thumbnail {
-    height: 200px;
-    border: 6px solid black;
+    height: 230px;
+    border: 4px solid black;
+    border-radius: 6px;
+    box-shadow: 5px 10px 8px #888888;
+
 }
 .barbershop-photo-full{
     height: 600px;
-    border: 6px solid black;
+    border: 4px solid black;
+    border-radius: 6px;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -431,6 +455,13 @@ h1, h2, h3, h4, h5, h6 {
     height: 100vh;
     overflow: hidden;
 }
+
+.wall-barbershop-picture-container {
+    position: relative;
+    width: 100%;
+    height: 128vh;
+    overflow: hidden;
+}
 .home-cover-picture {
     position: absolute;
     top: -120px;
@@ -476,7 +507,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 5px 10px 8px #888888;
 }
 
-.fa-star {
+.fa-star, .fa-star-half-alt {
     color: #ffc400;
     font-size: 1.25rem;
 }
