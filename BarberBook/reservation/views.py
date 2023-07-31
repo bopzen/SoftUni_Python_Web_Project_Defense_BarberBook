@@ -283,7 +283,6 @@ class ReservationsListView(auth_mixins.LoginRequiredMixin, views.ListView):
 
         return queryset
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         current_datetime = datetime.now()

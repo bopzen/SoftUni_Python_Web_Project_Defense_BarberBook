@@ -1,47 +1,93 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Barberbook My Reviews
 {% endblock %}
 
 {% block content %}
-    <h1>My Reviews</h1>
-    <a href="{% url 'client-details' %}" class="link-button">Back to Client Profile</a>
-    {% if reviews %}
-        <ul>
-            {% for review in reviews %}
-                <li>
-                    <p>Barbershop: {{ review.barbershop }}</p>
-                    <p>Time: {{ review.date_created }}</p>
-                    <p>Rating: {{ review.rating }}</p>
-                    <p>Comment: {{ review.comment }}</p>
-                    <p>By: {{ review.user }}</p>
-                    <a href="{% url 'edit-review' pk=review.pk %}" class="link-button">Edit Review</a>
-                    <a href="{% url 'delete-review' pk=review.pk %}" class="link-button">Delete Review</a>
-                </li>
-            {% endfor %}
-        </ul>
-        {% if is_paginated %}
-            <div class="pagination">
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                    </span>
-
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
+    <div class="wall-picture-container">
+        <div class="main-review-container">
+        <div class="reviews-header">
+            <h1>My Reviews</h1>
+            <a href="{% url 'client-details' %}" class="link-button">Back to Profile</a>
+        </div>
+        <div class="list-container">
+            {% if reviews %}
+                {% for review in reviews %}
+                    <div class="review-container">
+                        <div>
+                            <p><b>Barbershop:</b> {{ review.barbershop }}</p>
+                            <p><b>Rating:</b>
+                            {% if review.rating == 1 %}
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif review.rating == 2 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif review.rating == 3 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif review.rating == 4 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif review.rating == 5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            {% endif %}
+                            ({{ review.rating }})
+                        </p>
+                        </div>
+                        <p class="review-comment">" {{ review.comment }} "</p>
+                        <div>
+                            <p><b>By:</b> {{ review.user }}</p>
+                            <p><b>Posted on:</b> {{ review.date_created }}</p>
+                            <div class="buttons">
+                                <button><a href="{% url 'edit-review' pk=review.pk %}" class="link-button">Edit Review</a></button>
+                                <button><a href="{% url 'delete-review' pk=review.pk %}" class="link-button">Delete Review</a></button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        {% endif %}
-    {% else %}
-        <p>No reviews yet for {{ barbershop.name }}.</p>
-    {% endif %}
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
 
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                            </span>
+
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+
+            {% else %}
+                <p>No reviews yet for {{ barbershop.name }}.</p>
+            {% endif %}
+
+        </div>
+
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

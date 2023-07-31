@@ -158,6 +158,11 @@ button {
     border: none;
     cursor: pointer;
 }
+button:hover {
+    color: lightskyblue;
+}
+
+
 .main-container {
     margin: 3rem 6rem;
 }
@@ -171,6 +176,14 @@ button {
 }
 
 .main-barbershop-list-container {
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-review-container {
     margin: 3rem;
     display: flex;
     flex-direction: column;
@@ -314,20 +327,28 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     border: 3px solid black;
     border-radius: 6px;
-
     margin-bottom: 1rem;
 }
 
-.reservation-list-table thead {
-    background: lightgray;
+.reservation-list-table thead th{
+    background: darkgray;
 }
 
 
 .reservation-list-table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+.reservation-list-table tr:nth-child(odd) {
+    background-color: white;
+}
+.table-button {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
 
 .pagination {
+    margin-top: 1rem;
     text-align: center;
 }
 .pagination .current {
@@ -441,20 +462,52 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.review-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 450px;
+    height: 350px;
+    padding: 2rem;
+    margin: 1rem;
+    border: 2px solid black;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 5px 10px 8px #888888;
+}
 
+.fa-star {
+    color: #ffc400;
+    font-size: 1.25rem;
+}
 
+.review-comment {
+    line-height: 1;
+    word-break: break-all;
+}
 
+.review-container .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.form-button {
+    width: 50%;
+}
+.cancel-button {
+    width: 50%;
+}
 
-
-
-
-
+.reviews-header {
+    margin-left: 3rem;
+    align-self: flex-start;
+}
 
 .star-rating {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    width: 600px; /* Adjust the width as needed */
+    width: 450px; /* Adjust the width as needed */
+    margin-bottom: 1rem;
 }
 
 .star-rating input[type="radio"] {
@@ -463,14 +516,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .star-rating label {
     display: block;
-    width: 100px;
-    height: 100px;
-    background-image: url('/static/images/hair-clipper-white.jpg'); /* Replace with your unfilled star image path */
+    width: 72px;
+    height: 72px;
+    background-image: url('/static/images/hair-clipper-white.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
 }
 
 .star-rating input[type="radio"]:checked ~ label {
-    background-image: url('/static/images/hair-clipper-black.jpg'); /* Replace with your filled star image path */
+    background-image: url('/static/images/hair-clipper-black.jpg');
 }
