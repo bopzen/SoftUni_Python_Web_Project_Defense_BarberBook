@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 from BarberBook.barbershop.models import BarbershopProfile
@@ -20,3 +21,12 @@ def map_page(request):
         'barbershops': barbershops
     }
     return render(request, 'common/map-all-barbershops.html', context)
+
+
+def search_view(request):
+    if request.method == 'GET' and 'q' in request.GET:
+        query = request.GET.get('q', '')
+        results = BarbershopProfile.objects.filter(name__icontains=query)
+        data = [{'name': result.name, 'address': result.address, 'city': result.city, 'slug': result.slug} for result in results]
+        return JsonResponse(data, safe=False)
+    return JsonResponse([], safe=False)

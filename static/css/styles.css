@@ -101,7 +101,27 @@ header a {
     border: none;
     font-size: 1rem;
 }
+#search-results {
+    display: none;
 
+}
+#search-results:not(:empty) {
+    display: block;
+    position: absolute;
+    width: 200%;
+    padding: 2rem;
+    line-height: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+    border-radius: 16px;
+    box-shadow: 5px 10px 8px black;
+    top: 60px;
+    left: -200px;
+    z-index: 20;
+}
+#search-results:not(:empty) div {
+    text-align: center;
+}
 footer {
     width: 100%;
     /*position: fixed;*/
@@ -146,7 +166,12 @@ a:hover {
     padding: 2px 8px;
     border-radius: 4px;
 }
-
+.check-out{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
 
 button {
     font-size: 1rem;

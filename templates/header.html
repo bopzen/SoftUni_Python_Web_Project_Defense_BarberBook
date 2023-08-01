@@ -11,7 +11,8 @@
 </div>
 <div class="search-field">
     <span><i class="fas fa-search"></i></span>
-    <input type="text" placeholder="Search barbershop...">
+    <input type="text" id="search-input" placeholder="Search for barbershop...">
+    <div id="search-results"></div>
 </div>
 <nav class="header-nav-links">
     <ul role="list">
@@ -50,4 +51,34 @@
     </ul>
 </nav>
 
+
+<script>
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value;
+        if (query.length >= 2) {
+            fetch(`/search/?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    searchResults.innerHTML = '';
+                    data.forEach(result => {
+                        const resultItem = document.createElement('div');
+
+                        // Create an anchor element for each search result
+                        const link = document.createElement('a');
+                        link.href = `/barbershop/${result.slug}/profile/`; // Set the URL dynamically
+                        link.textContent = `${result.name} - ${result.city}, ${result.address}`;
+                        resultItem.appendChild(link);
+
+                        searchResults.appendChild(resultItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching search results:', error));
+        } else {
+            searchResults.innerHTML = '';
+        }
+    });
+</script>
 
