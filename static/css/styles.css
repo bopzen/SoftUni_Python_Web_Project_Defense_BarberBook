@@ -417,6 +417,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 5px 10px 8px #888888;
 }
 
+
 .reserved-stamp {
     height: 100px;
     transform: rotate(20deg);
@@ -541,7 +542,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .home-cover-picture {
     position: absolute;
-    top: -120px;
+    top: -300px;
     left: 0;
     width: 100%;
     object-fit: cover;

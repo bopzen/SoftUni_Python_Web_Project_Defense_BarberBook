@@ -48,8 +48,7 @@ class BarbershopListView(views.ListView):
     model = BarbershopProfile
     template_name = 'barbershop/barbershops-list.html'
     context_object_name = 'barbershops'
-    paginate_by = 2
-
+    paginate_by = 6
 
 
 class CreateBarbershopServiceView(auth_mixins.LoginRequiredMixin, views.CreateView):
