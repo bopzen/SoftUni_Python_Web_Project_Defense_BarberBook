@@ -133,9 +133,9 @@ Barberbook Barbershop Details Page
                             </a>
                         {% else %}
                             {% if weekday.start_time and weekday.end_time %}
-                                <li>{{ weekday.day|weekday_name }}: {{ weekday.start_time }} - {{ weekday.end_time }}</li>
+                                <li><b>{{ weekday.day|weekday_name }}:</b> {{ weekday.start_time }} - {{ weekday.end_time }}</li>
                             {% else %}
-                                <li>{{ weekday.day|weekday_name }}: <img src="{% static 'images/closed_sign.jpg'%}" alt="closed" class="closed-sign"></li>
+                                <li><b>{{ weekday.day|weekday_name }}:</b> <img src="{% static 'images/closed_sign.jpg'%}" alt="closed" class="closed-sign"></li>
                             {% endif %}
                         {% endif %}
                     {% endfor %}
@@ -177,7 +177,7 @@ Barberbook Barbershop Details Page
             </div>
 
             <div class="barbers-list">
-                <h2>Our Barbers: {{ object.barber_set.count }}</h2>
+                <h2>Our Barbers:</h2>
                 <ul>
                     {% for barber in object.barber_set.all %}
                         <li><a href="{% url 'barber-details' pk=barber.pk %}">{{ barber.name }}</a></li>

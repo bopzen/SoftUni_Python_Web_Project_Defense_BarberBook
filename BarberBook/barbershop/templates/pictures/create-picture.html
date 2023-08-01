@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Add Photo Page
 {% endblock %}
 
 {% block content %}
-    <h1>Add Photo Page</h1>
-    <form action="{% url 'create-picture' slug=barbershop.slug %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Add Photo</button>
-    </form>
-    <a href="{% url 'barbershop-details' slug=barbershop.slug %}"><button>Cancel</button></a>
+
+    <div class="wall-picture-container">
+        <div class="main-form-container">
+            <div class="form-container">
+                <h1>Add Photo</h1>
+                <form action="{% url 'create-picture' slug=barbershop.slug %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button>Add Photo</button>
+                </form>
+                <a href="{% url 'barbershop-details' slug=barbershop.slug %}"><button>Cancel</button></a>
+            </div>
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}
