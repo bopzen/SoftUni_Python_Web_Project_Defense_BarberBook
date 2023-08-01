@@ -1,22 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Reservation Select Barber Page
 {% endblock %}
 
 {% block content %}
-    <h1>Step 3: Select Barber</h1>
-    <p>Client username: {{ user }}</p>
-    <p>Barbershop: {{ barbershop.name }}</p>
-    <p>Service: {{ service }}</p>
 
-    <form action="{% url 'step3-select-barber' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Next Step</button>
-    </form>
+    <div class="wall-picture-container">
+        <div class="main-form-container">
+            <div class="reservation-form-container">
+                <h1>Step 3: Select Barber</h1>
+                <div class="reservation-form-wrapper">
+                    <div class="reservation-left-side">
+                        <img src="{% static 'images/barbershop-chair.jpg' %}" alt="chair">
+                    </div>
+                    <div class="reservation-right-side">
+                        <div>
+                            <p><b>Client username:</b> {{ user.username }}</p>
+                            <p><b>Barbershop:</b> {{ barbershop.name }}</p>
+                            <p><b>Service:</b> {{ service }}</p>
+                        </div>
 
-    <a href="{% url 'step2-select-barbershop-service' %}" class="link-button"> < Back</a>
-
+                        <form action="{% url 'step3-select-barber' %}" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="reservation-form-buttons">
+                                <button type="button"><a href="{% url 'step2-select-barbershop-service' %}" class="link-button">< Back</a></button>
+                                <button type="submit">Next ></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 
 {% endblock %}

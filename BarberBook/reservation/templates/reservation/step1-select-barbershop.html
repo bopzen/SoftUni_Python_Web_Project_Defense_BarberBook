@@ -1,15 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Reservation Select Barbershop Page
 {% endblock %}
 
 {% block content %}
-    <h1>Step 1: Select Barbershop</h1>
-    <p>Client username: {{ user.username }}</p>
-    <p>Barbershop: {{ barbershop.name }}</p>
+    <div class="wall-picture-container">
+        <div class="main-form-container">
+            <div class="reservation-form-container">
+                <h1>Step 1: Select Barbershop</h1>
+                <div class="reservation-form-wrapper">
+                    <div class="reservation-left-side">
+                        <img src="{% static 'images/barbershop-chair.jpg' %}" alt="chair">
+                    </div>
+                    <div class="reservation-right-side">
+                        <div>
+                            <p><b>Client username:</b> {{ user.username }}</p>
+                            <p><b>Barbershop:</b> {{ barbershop.name }}</p>
+                        </div>
 
-    <a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button"> < Back to Barbershop Profile</a>
-    <a href="{% url 'step2-select-barbershop-service' %}" class="link-button">Next Step > </a>
+                        <div class="reservation-form-buttons">
+                            <button><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">< Back</a></button>
+                            <button><a href="{% url 'step2-select-barbershop-service' %}" class="link-button">Next ></a></button>
+                        </div>
+                    </div>
 
+                </div>
+
+
+            </div>
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Reservation Select Date Page
@@ -6,23 +7,39 @@
 
 
 {% block content %}
-    <div class="select-date-form">
-        <div class="reservation-info">
-            <h1>Step 4: Select Date</h1>
-            <p>Client username: {{ user }}</p>
-            <p>Barbershop: {{ barbershop.name }}</p>
-            <p>Service: {{ service }}</p>
-            <p>Barber {{ barber }}</p>
 
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit">Next</button>
-            </form>
-            <a href="{% url 'step3-select-barber' %}" class="link-button"> < Back</a>
+    <div class="wall-picture-container">
+        <div class="main-form-container">
+            <div class="reservation-form-container">
+                <h1>Step 3: Select Date</h1>
+                <div class="reservation-form-wrapper">
+                    <div class="reservation-left-side">
+                        <img src="{% static 'images/barbershop-chair.jpg' %}" alt="chair">
+                    </div>
+                    <div class="reservation-right-side">
+                        <div>
+                            <p><b>Client username:</b> {{ user.username }}</p>
+                            <p><b>Barbershop:</b> {{ barbershop.name }}</p>
+                            <p><b>Service:</b> {{ service }}</p>
+                            <p><b>Barber:</b> {{ barber }}</p>
+                        </div>
+
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="reservation-form-buttons">
+                                <button type="button"><a href="{% url 'step3-select-barber' %}" class="link-button">< Back</a></button>
+                                <button type="submit">Next ></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
     </div>
+
+
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
@@ -35,7 +52,7 @@
             endDate: '+14d',
             autoclose: true,
             defaultViewDate: 'today',
-            container: '.select-date-form'
+            container: '.reservation-right-side'
         });
     </script>
 
