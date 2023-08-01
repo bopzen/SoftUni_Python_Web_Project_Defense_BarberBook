@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load barbershop_custom_filters %}
 
 {% block title %}
@@ -6,14 +7,20 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Working Hours Details Page</h1>
-    <ul>
-        <li>Weekday: {{ object.day|weekday_name }}</li>
-        <li>Start Time: {{ object.start_time }}</li>
-        <li>End Time: {{ object.end_time }}</li>
-    </ul>
+    <div class="wall-picture-container">
+        <div class="main-container">
+            <h1>Working Hours Details</h1>
+            <a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}" class="link-button">Back to Profile</a>
+            <ul>
+                <li><b>Weekday:</b> {{ object.day|weekday_name }}</li>
+                <li><b>Start Time:</b> {{ object.start_time }}</li>
+                <li><b>End Time:</b> {{ object.end_time }}</li>
+            </ul>
 
-    {% if object.barbershop.pk == request.user.pk %}
-        <a href="{% url 'edit-working-hours' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Edit Hours</a>
-    {% endif %}
+            {% if object.barbershop.pk == request.user.pk %}
+                <a href="{% url 'edit-working-hours' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Edit Hours</a>
+            {% endif %}
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

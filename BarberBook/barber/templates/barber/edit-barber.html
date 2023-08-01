@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Edit Barber Page
 {% endblock %}
 
 {% block content %}
-    <h1>Edit Barber Page</h1>
-    <form action="{% url 'edit-barber' pk=object.pk %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Edit Barber</button>
-        <a href="{% url 'barber-details' pk=object.pk %}"><button>Cancel</button></a>
-    </form>
+    <div class="wall-picture-container">
+        <div class="main-form-container">
+            <div class="form-container">
+                <h1>Edit Barber</h1>
+                <form action="{% url 'edit-barber' pk=object.pk %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button>Edit Barber</button>
+                </form>
+                <a href="{% url 'barber-details' pk=object.pk %}"><button>Cancel</button></a>
+            </div>
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

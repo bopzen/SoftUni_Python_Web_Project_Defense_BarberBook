@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Service Details Page
 {% endblock %}
 
 {% block content %}
-    <h1>Service Details Page</h1>
-    <ul>
-        <li>Service: {{ object.service_name }}</li>
-        <li>Price: {{ object.price }}</li>
-    </ul>
+    <div class="wall-picture-container">
+        <div class="main-container">
 
-    {% if object.barbershop.pk == request.user.pk %}
-        <a href="{% url 'edit-service' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Edit Service</a>
-        <a href="{% url 'delete-service' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Delete Service</a>
-    {% endif %}
+            <h1>Service Details Page</h1>
+            <a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}" class="link-button">Back to Profile</a>
+            <ul>
+                <li>Service: {{ object.service_name }}</li>
+                <li>Price: {{ object.price }}</li>
+            </ul>
+
+            {% if object.barbershop.pk == request.user.pk %}
+                <button><a href="{% url 'edit-service' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Edit Service</a></button>
+                <button><a href="{% url 'delete-service' slug=object.barbershop.slug pk=object.pk %}" class="link-button">Delete Service</a></button>
+            {% endif %}
+
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

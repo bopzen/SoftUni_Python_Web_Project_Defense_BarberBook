@@ -6,20 +6,26 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Barber Details Page</h1>
-    {% if object.barber_picture %}
-        <img src="{{ object.barber_picture.url }}" class="profile-picture" alt="barber-profile_picture">
-    {% else %}
-        <img src="{% static 'images/barber-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture">
-    {% endif %}
-    <ul>
-        <li>Name: {{ object.name }}</li>
-        <li>About: {{ object.about }}</li>
-        <li>Barbershop: {{ object.barbershop.name }}</li>
-    </ul>
+    <div class="wall-picture-container">
+        <div class="main-container">
+            <h1>Barber Details Page</h1>
+            <a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}" class="link-button">Back to Profile</a><br><br>
+            {% if object.barber_picture %}
+                <img src="{{ object.barber_picture.url }}" class="profile-picture" alt="barber-profile_picture">
+            {% else %}
+                <img src="{% static 'images/barber-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture">
+            {% endif %}
+            <ul>
+                <li><b>Name:</b> {{ object.name }}</li>
+                <li><b>About:</b>" {{ object.about }} "</li>
+                <li><b>Barbershop:</b> {{ object.barbershop.name }}</li>
+            </ul>
 
-    {% if object.barbershop.pk == request.user.pk %}
-        <a href="{% url 'edit-barber' pk=object.pk %}" class="link-button">Edit Barber</a>
-        <a href="{% url 'delete-barber' pk=object.pk %}" class="link-button">Delete Barber</a>
-    {% endif %}
+            {% if object.barbershop.pk == request.user.pk %}
+                <button><a href="{% url 'edit-barber' pk=object.pk %}" class="link-button">Edit Barber</a></button>
+                <button><a href="{% url 'delete-barber' pk=object.pk %}" class="link-button">Delete Barber</a></button>
+            {% endif %}
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}

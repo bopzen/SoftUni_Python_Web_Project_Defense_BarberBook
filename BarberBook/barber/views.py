@@ -57,6 +57,3 @@ class BarberDetailsView(views.DetailView):
     model = Barber
     template_name = 'barber/barber-details.html'
 
-
-def barbers_list(request):
-    return render(request, 'barber/barbers-list.html')

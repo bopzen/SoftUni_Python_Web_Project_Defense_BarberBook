@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     BarberBook Delete Barber Page
 {% endblock %}
 
 {% block content %}
-    <h1>Delete Barber Page</h1>
-    <h2>Are you sure you want to delete this barber?</h2>
-    <form method="post">
-        {% csrf_token %}
-        <button>Delete</button>
-        <a href="{% url 'barber-details' pk=object.pk %}">Cancel</a>
-    </form>
+    <div class="wall-picture-container">
+        <div class="main-container">
+            <h1>Delete Barber</h1>
+            <h2>Are you sure you want to delete this barber?</h2>
+            <form method="post">
+                {% csrf_token %}
+                <button>Delete</button>
+            </form>
+            <button><a href="{% url 'barber-details' pk=object.pk %}">Cancel</a></button>
+        </div>
+        <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
+    </div>
 {% endblock %}
