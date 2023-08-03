@@ -123,7 +123,7 @@ Barberbook Barbershop Details Page
             <div class="working-hours">
                 <h2>Working Hours</h2>
                 <ul>
-                    {% for weekday in object.barbershopworkinghours_set.all %}
+                    {% for weekday in object.barbershopworkinghours_set.all|dictsort:'day' %}
                         {% if object.pk == request.user.pk %}
                             <a href="{% url 'working-hours-details' slug=object.slug pk=weekday.pk %}">
                                 {% if weekday.start_time and weekday.end_time %}

@@ -9,7 +9,7 @@
     <div class="wall-picture-container">
         <div class="main-container">
             <h1>Barber Details</h1>
-            <a href="{% url 'barbershop-details' slug=request.user.barbershopprofile.slug %}" class="link-button">Back to Profile</a><br><br>
+            <a href="{% url 'barbershop-details' slug=barber.barbershop.slug %}" class="link-button">Back to Profile</a><br><br>
             {% if object.barber_picture %}
                 <img src="{{ object.barber_picture.url }}" class="profile-picture" alt="barber-profile_picture">
             {% else %}

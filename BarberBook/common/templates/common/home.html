@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}
     BarberBook Home Page
@@ -8,9 +9,20 @@
 {% block content %}
 
     <div class="cover-picture-container">
-        <h1>Welcome to BarberBook</h1>
-        <h2>Book Your Fresh Look Today!</h2>
-        <a href="{% url 'barbershop-list' %}" class="check-out">Check out our barbershops</a>
+        {% if not request.user.is_authenticated %}
+            <h1>Welcome to BarberBook</h1>
+            <h2>Book Your Fresh Look Today!</h2>
+        {% else %}
+            <h1>Welcome back, {{ request.user }}</h1>
+            {% if request.user|get_role == 'Client' %}
+                <h2>{{ client_message }}</h2>
+            {% else %}
+                <h2>{{ barbershop_message }}</h2>
+            {% endif %}
+        {% endif %}
+        {% if not request.user.is_authenticated or request.user|get_role == 'Client' %}
+            <a href="{% url 'barbershop-list' %}" class="check-out">Check out our barbershops</a>
+        {% endif %}
         <img src="{% static 'images/website_photos/nathon-oski-EW_rqoSdDes-unsplash.jpg' %}" alt="cover" class="home-cover-picture">
     </div>
 
