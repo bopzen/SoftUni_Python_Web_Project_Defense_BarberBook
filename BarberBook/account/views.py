@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import views as auth_views, get_user_model, login
 from django.contrib.auth import mixins as auth_mixins
 from django.urls import reverse_lazy
@@ -58,3 +59,8 @@ class UserChangePasswordView(auth_mixins.LoginRequiredMixin, auth_views.Password
     model = UserModel
     template_name = 'account/change-password.html'
     success_url = reverse_lazy('home-page')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Password changed successfully.")
+        return response

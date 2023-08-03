@@ -51,6 +51,25 @@
     </ul>
 </nav>
 
+    <div class="success-message {% for message in messages %}{% if message.tags == 'success' %}active{% endif %}{% endfor %}">
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                {{ message }}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+<script>
+    // Hide the success message after 3 seconds
+    const successMessage = document.querySelector('.success-message');
+    if (successMessage) {
+        setTimeout(() => {
+            successMessage.innerHTML = "";
+            successMessage.classList.remove('active');
+        }, 3000);
+    }
+</script>
 
 <script>
     const searchInput = document.getElementById('search-input');
