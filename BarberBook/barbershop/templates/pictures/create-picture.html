@@ -14,9 +14,11 @@
                 <form action="{% url 'create-picture' slug=barbershop.slug %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button>Add Photo</button>
+                    <div class="form-buttons">
+                        <button>Add Photo</button>
+                        <button type="button"><a href="{% url 'barbershop-details' slug=barbershop.slug %}">Cancel</a></button>
+                    </div>
                 </form>
-                <a href="{% url 'barbershop-details' slug=barbershop.slug %}"><button>Cancel</button></a>
             </div>
         </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">

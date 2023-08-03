@@ -172,11 +172,8 @@ a:hover {
     color: lightskyblue;
 }
 
-.link-button {
-    background: black;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 4px;
+.centered {
+    text-align: center;
 }
 .check-out{
     background-color: rgba(0, 0, 0, 0.5);
@@ -194,11 +191,20 @@ button {
     border-radius: 8px;
     border: none;
     cursor: pointer;
+    transition: transform 0.3s, color 0.3s, box-shadow 0.3s;
 }
 button:hover {
     color: lightskyblue;
+    transform: scale(1.1);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
 }
 
+.link-button {
+    background: black;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
 
 .main-container {
     margin: 0.25rem 3rem;
@@ -326,8 +332,27 @@ div #id_role {
 .form-buttons {
     margin-top: 2rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+.form-buttons button {
+    font-size: 1.2rem;
+}
+.delete-form-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.delete-form-buttons button {
+    font-size: 1.2rem;
+}
+.logout-form-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.logout-form-buttons button {
+    font-size: 1.2rem;
 }
 
 .change-password-form-container {

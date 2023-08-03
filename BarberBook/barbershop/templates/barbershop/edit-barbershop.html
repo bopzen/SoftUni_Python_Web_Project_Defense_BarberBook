@@ -13,9 +13,11 @@ Barberbook Edit Barbershop Page
                 <form action="{% url 'edit-barbershop' slug=object.slug %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button>Edit Barbershop</button>
+                    <div class="form-buttons">
+                        <button>Edit Barbershop</button>
+                        <button type="button"><a href="{% url 'barbershop-details' slug=object.slug %}">Cancel</a></button>
+                    </div>
                 </form>
-                <a href="{% url 'barbershop-details' slug=object.slug %}"><button>Cancel</button></a>
             </div>
         </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">

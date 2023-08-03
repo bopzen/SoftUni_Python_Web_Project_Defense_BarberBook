@@ -16,9 +16,11 @@ Barberbook Edit Barbershop Working Hours Page
                 <form action="{% url 'edit-working-hours' slug=object.barbershop.slug pk=object.pk %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button>Edit Working Hours</button>
+                    <div class="form-buttons">
+                        <button>Edit Working Hours</button>
+                        <button type="button"><a href="{% url 'barbershop-details' slug=object.barbershop.slug %}">Cancel</a></button>
+                    </div>
                 </form>
-                <a href="{% url 'barbershop-details' slug=object.barbershop.slug %}"><button>Cancel</button></a>
             </div>
         </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">

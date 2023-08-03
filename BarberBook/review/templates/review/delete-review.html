@@ -13,9 +13,11 @@
 
         <form method="post">
             {% csrf_token %}
-            <button type="submit">Delete Review</button>
+            <div class="delete-form-buttons">
+                <button type="submit">Delete Review</button>
+                <button type="button"><a href="{% url 'client-details' %}" class="link-button">Cancel</a></button>
+            </div>
         </form>
-        <button><a href="{% url 'client-details' %}" class="link-button">Cancel</a></button>
     </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">
     </div>

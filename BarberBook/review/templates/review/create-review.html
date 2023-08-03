@@ -24,22 +24,28 @@
                         <label for="{{ form.comment.id_for_label }}">Comment:</label>
                         {{ form.comment }}
                     </div>
-                    <button type="submit" class="form-button">Submit Review</button>
+                    <div class="form-buttons">
+                        <button>Submit Review</button>
+                        <button type="button"><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Cancel</a></button>
+                    </div>
                 </form>
             {% else %}
                 {% if not user_is_client %}
                     <p>You must be a client to leave a review.</p>
+                    <button type="button" class="cancel-button"><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Back to Barbershop</a></button>
                 {% endif %}
 
                 {% if not has_reserved %}
                     <p>You must have at least one reservation with this barbershop to leave a review.</p>
+                    <button type="button" class="cancel-button"><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Back to Barbershop</a></button>
                 {% endif %}
 
                 {% if has_reviewed %}
                     <p>You have already reviewed this barbershop.</p>
+                    <button type="button" class="cancel-button"><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Back to Barbershop</a></button>
                 {% endif %}
             {% endif %}
-            <button class="cancel-button"><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Back to Barbershop</a></button>
+
         </div>
     </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">

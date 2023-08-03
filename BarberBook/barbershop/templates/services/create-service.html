@@ -13,9 +13,11 @@
                 <form action="{% url 'create-service' slug=barbershop.slug %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button>Add Service</button>
+                    <div class="form-buttons">
+                        <button>Add Service</button>
+                        <button type="button"><a href="{% url 'barbershop-details' slug=barbershop.slug %}">Cancel</a></button>
+                    </div>
                 </form>
-                <a href="{% url 'barbershop-details' slug=barbershop.slug %}"><button>Cancel</button></a>
             </div>
         </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">

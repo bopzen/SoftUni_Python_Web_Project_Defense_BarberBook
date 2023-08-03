@@ -13,10 +13,10 @@ Barberbook Login Page
                 <form action="{% url 'login-page' %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
+                    <div class="centered">
+                        <a href="">Forgot your password?</a>
+                    </div>
                     <div class="form-buttons">
-                        <div>
-                            <a href="">Forgot your password?</a>
-                        </div>
                         <div>
                             <button>Login</button>
                             or

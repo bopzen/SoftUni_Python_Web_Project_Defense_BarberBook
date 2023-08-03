@@ -13,9 +13,11 @@ Barberbook Edit Client Page
                 <form action="{% url 'edit-client' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button>Edit Profile</button>
+                    <div class="form-buttons">
+                        <button>Edit Profile</button>
+                        <button type="button"><a href="{% url 'client-details' %}">Cancel</a></button>
+                    </div>
                 </form>
-                <a href="{% url 'client-details' %}"><button>Cancel</button></a>
             </div>
         </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">

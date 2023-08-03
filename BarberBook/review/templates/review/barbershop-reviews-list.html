@@ -10,8 +10,8 @@
         <div class="main-review-container">
             <div class="reviews-header">
                 <h1>Reviews for {{ barbershop.name }}</h1>
-                <button><a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Back to Barbershop Profile</a></button>
-                <button><a href="{% url 'create-review' slug=barbershop.slug %}" class="link-button">Review Barbershop</a></button>
+                <a href="{% url 'barbershop-details' slug=barbershop.slug %}" class="link-button">Back to Barbershop Profile</a>
+                <a href="{% url 'create-review' slug=barbershop.slug %}" class="link-button">Review Barbershop</a>
             </div>
 
         <div class="list-container">
