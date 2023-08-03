@@ -1,4 +1,5 @@
 from django.contrib.auth import views as auth_views, get_user_model, login
+from django.contrib.auth import mixins as auth_mixins
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.shortcuts import render, redirect
@@ -51,3 +52,9 @@ class UserDeleteView(views.DeleteView):
             return redirect('home-page')
 
         return super().delete(request, *args, **kwargs)
+
+
+class UserChangePasswordView(auth_mixins.LoginRequiredMixin, auth_views.PasswordChangeView):
+    model = UserModel
+    template_name = 'account/change-password.html'
+    success_url = reverse_lazy('home-page')

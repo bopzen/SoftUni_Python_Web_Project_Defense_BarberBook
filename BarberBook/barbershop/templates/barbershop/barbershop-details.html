@@ -28,10 +28,11 @@ Barberbook Barbershop Details Page
                 <h2><a href="{% url 'create-review' slug=object.slug %}">Review Barbershop</a></h2>
             {% endif %}
 
-            <div>
+            <div class="barbershop-details-buttons">
                 {% if object.pk == request.user.pk %}
                     <button><a href="{% url 'edit-barbershop' slug=object.slug %}" class="link-button">Edit Profile</a></button>
                     <button><a href="{% url 'delete-account' %}" class="link-button">Delete Profile</a></button>
+                    <button><a href="{% url 'change-password' %}" class="link-button">Change Password</a></button>
                     <button><a href="{% url 'reservation-list' pk=object.pk %}" class="link-button">Manage Reservations</a></button>
                 {% endif %}
             </div>

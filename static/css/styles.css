@@ -125,6 +125,14 @@ header a {
 #search-results:not(:empty) div {
     text-align: center;
 }
+
+.date-ago {
+    font-size: 0.8rem;
+}
+.barbershop-details-buttons button{
+    margin: 2px;
+    padding: 0.25rem;
+}
 footer {
     width: 100%;
     /*position: fixed;*/
@@ -321,6 +329,15 @@ div #id_role {
     align-items: center;
 }
 
+.change-password-form-container {
+    width: 700px;
+}
+
+.register-errors {
+    font-size: 0.8rem;
+    line-height: 0.5;
+    color: red;
+}
 
 
 .profile-picture {
