@@ -33,3 +33,7 @@ def search_view(request):
         data = [{'name': result.name, 'address': result.address, 'city': result.city, 'slug': result.slug} for result in results]
         return JsonResponse(data, safe=False)
     return JsonResponse([], safe=False)
+
+
+def about_page(request):
+    return render(request, 'common/about.html')
