@@ -10,6 +10,9 @@ UserModel = get_user_model()
 
 
 class BarbershopProfile(models.Model):
+    class Meta:
+        verbose_name = 'Barbershop Profile'
+
     name = models.CharField(
         max_length=50,
         null=False,
@@ -91,6 +94,9 @@ class ServiceCategory(models.Model):
 
 
 class BarbershopService(models.Model):
+    class Meta:
+        verbose_name_plural = 'Barbershop Services'
+
     service_name = models.CharField(
         max_length=50,
         null=False,
@@ -175,8 +181,14 @@ def barbershop_picture_upload_to(instance, filename):
 
 
 class BarbershopPicture(models.Model):
+    class Meta:
+        verbose_name_plural = 'Barbershop Pictures'
+
     barbershop = models.ForeignKey(
         BarbershopProfile,
         on_delete=models.CASCADE
     )
     image = models.ImageField(upload_to=barbershop_picture_upload_to)
+
+    def __str__(self):
+        return f'{self.barbershop.name} - {self.image.name}'

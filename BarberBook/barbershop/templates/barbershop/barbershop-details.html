@@ -21,10 +21,10 @@ Barberbook Barbershop Details Page
             <h1>Barbershop Details</h1>
 
             {% if object.pk == request.user.pk %}
-                <h2><a href="{% url 'step1-select-barbershop' slug=object.slug %}" class="book-now-button">BOOK NOW</a></h2>
+                <button class="book-now-button"><a href="{% url 'step1-select-barbershop' slug=object.slug %}">BOOK NOW</a></button>
             {% endif %}
             {% if request.user.is_authenticated and request.user|get_role == 'Client' %}
-                <h2><a href="{% url 'step1-select-barbershop' slug=object.slug %}" class="book-now-button">BOOK NOW</a></h2>
+                <button class="book-now-button"><a href="{% url 'step1-select-barbershop' slug=object.slug %}">BOOK NOW</a></button>
                 <h2><a href="{% url 'create-review' slug=object.slug %}">Review Barbershop</a></h2>
             {% endif %}
 

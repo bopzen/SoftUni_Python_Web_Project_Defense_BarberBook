@@ -22,7 +22,6 @@ def home_page(request):
         else:
             client_message = f"Total {total_reservations} booked appointments with us"
 
-
     barbershop_message = None
     if user.is_authenticated and hasattr(user, 'barbershopprofile'):
         today_reservations = Reservation.objects.filter(barbershop=user.barbershopprofile, date=datetime.date.today()).count()
