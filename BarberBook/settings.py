@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+
     'BarberBook.account',
     'BarberBook.barbershop',
     'BarberBook.barber',

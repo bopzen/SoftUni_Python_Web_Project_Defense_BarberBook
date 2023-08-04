@@ -1,4 +1,6 @@
 from django.urls import path, include
+
+from BarberBook.reservation.api_views import ReservationListAPIView
 from BarberBook.reservation.views import select_barbershop, select_barbershop_service, select_barber, select_date, \
     select_time, create_reservation, reservation_success, ReservationsListView, DeleteReservationView
 
@@ -13,5 +15,6 @@ urlpatterns = [
         path('reservation-success/', reservation_success, name='reservation-success')
     ])),
     path('reservations-list/<int:pk>/', ReservationsListView.as_view(), name='reservation-list'),
-    path('delete/<int:pk>/', DeleteReservationView.as_view(), name='delete-reservation')
+    path('delete/<int:pk>/', DeleteReservationView.as_view(), name='delete-reservation'),
+    path('api/all-reservations/', ReservationListAPIView.as_view(), name='all-reservations-api')
 ]
