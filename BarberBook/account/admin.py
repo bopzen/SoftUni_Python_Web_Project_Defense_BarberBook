@@ -6,6 +6,7 @@ from BarberBook.account.models import AppUser
 @admin.register(AppUser)
 class AdminAppUser(admin.ModelAdmin):
     list_display = ['id', 'username', 'email', 'role', 'date_joined']
+    list_display_links = ['id', 'username', 'email', 'role', 'date_joined']
     list_filter = ['role', 'date_joined']
     list_per_page = 50
     search_fields = ['username', 'email', 'role']

@@ -25,8 +25,9 @@ class TimeFilter(admin.SimpleListFilter):
 @admin.register(Reservation)
 class AdminReservation(admin.ModelAdmin):
     list_display = ['id', 'date', 'time', 'barber', 'barbershop', 'user', 'user_email', 'service']
+    list_display_links = ['id', 'date', 'time', 'barber', 'barbershop', 'user', 'user_email', 'service']
     list_filter = ['date', TimeFilter, 'barber', 'barbershop', 'service']
-    list_per_page = 20
+    list_per_page = 50
     ordering = ['-date', '-time']
     search_fields = ['barber__name', 'barbershop__name', 'user__username', 'user__email', 'service__service_name']
     search_help_text = 'Search by Barber Name, Barbershop Name, Username, Email, Service Name'
