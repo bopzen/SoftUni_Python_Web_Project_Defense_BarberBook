@@ -44,9 +44,6 @@
                     </a>
                 </li>
             {% endif %}
-
-
-
         {% endif %}
     </ul>
 </nav>
@@ -61,7 +58,6 @@
 
 
 <script>
-    // Hide the success message after 3 seconds
     const successMessage = document.querySelector('.success-message');
     if (successMessage) {
         setTimeout(() => {
@@ -77,24 +73,39 @@
 
     searchInput.addEventListener('input', () => {
         const query = searchInput.value;
+        const resultCount = document.createElement('div');
+        resultCount.classList.add('matches');
+        resultCount.innerHTML = '';
+        let counter = 0;
         if (query.length >= 2) {
             fetch(`/search/?q=${query}`)
                 .then(response => response.json())
                 .then(data => {
                     searchResults.innerHTML = '';
+
                     data.forEach(result => {
                         const resultItem = document.createElement('div');
 
-                        // Create an anchor element for each search result
                         const link = document.createElement('a');
-                        link.href = `/barbershop/${result.slug}/profile/`; // Set the URL dynamically
+                        link.href = `/barbershop/${result.slug}/profile/`;
                         link.textContent = `${result.name} - ${result.city}, ${result.address}`;
                         resultItem.appendChild(link);
-
+                        counter++;
                         searchResults.appendChild(resultItem);
                     });
+
+                    const resultCountParagraph = document.createElement('p');
+                    if (counter === 1) {
+                        resultCountParagraph.textContent = `${counter} match found`;
+                    } else {
+                        resultCountParagraph.textContent = `${counter} matches found`;
+                    }
+                    resultCount.appendChild(resultCountParagraph);
+                    searchResults.appendChild(resultCount)
+
                 })
                 .catch(error => console.error('Error fetching search results:', error));
+
         } else {
             searchResults.innerHTML = '';
         }

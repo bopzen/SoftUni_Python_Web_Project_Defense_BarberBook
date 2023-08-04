@@ -9,23 +9,33 @@
         <div class="main-container">
             <button><a href="javascript:void(0);" onclick="history.go(-1);">Back</a></button>
             <h1>About the BarberBook Project</h1>
-            <h2>Hello, my name is Boyan Todorov and I currently study Python Web Development at SoftUni.</h2>
-            <h3>This is my project for my Web Development Module final assessment</h3><br>
-            <p>
-                <b>BarberBook</b> is a web application that helps clients book an appointment for their favorite barbershop in just few clicks. The app connects customers with barbershops for an easy reservation process.
-                The app allows 2 types of users that can register on the website: <b>Client</b> and <b>Barbershop</b>.
-            </p>
-            <br>
-            <p><b>Client</b> users can choose from variety of barbershops and book an appointment.</p>
-            <br>
-            <p><b>Barbershops</b> on the other hand can register on the website and can manage their reservations.</p>
-            <br><br>
-            <h3>The project is developed using the following technologies:</h3>
-            <ul>
-                <li><b>For Back-end:</b> Python, Django Framework</li>
-                <li><b>For Front-end:</b> Custom HTML, CSS and additional components built with Bootstrap, Javascript, jQuery, LeafLet Maps Library</li>
-                <li><b>For Database:</b> PostgreSQL</li>
-            </ul>
+            <div class="container-about">
+                <div class="left-container">
+                    <h2>Hello, my name is Boyan Todorov and I currently study Python Web Development at SoftUni.</h2>
+                    <h3>This is my project for my Web Development Module final assessment</h3><br>
+                    <p>
+                        <b>BarberBook</b> is a web application that helps clients book an appointment for their favorite barbershop in just few clicks. The app connects customers with barbershops for an easy reservation process.
+                        The app allows 2 types of users that can register on the website: <b>Client</b> and <b>Barbershop</b>.
+                    </p>
+                    <br>
+                    <p><b>Client</b> users can choose from variety of barbershops and book an appointment.</p>
+                    <br>
+                    <p><b>Barbershops</b> on the other hand can register on the website and can manage their reservations.</p>
+                    <br><br>
+                </div>
+                <div class="right-container">
+                    <img src="{% static 'images/website_photos/julien-orliac-gzobGDzh4ww-unsplash.jpg' %}" alt="picture">
+                </div>
+            </div>
+            <div>
+                <h3>The project is developed using the following technologies:</h3>
+                    <ul>
+                        <li><b>For Back-end:</b> Python, Django Framework</li>
+                        <li><b>For Front-end:</b> Custom HTML, CSS and additional components built with Bootstrap, Javascript, jQuery, LeafLet Maps Library</li>
+                        <li><b>For Database:</b> PostgreSQL</li>
+                    </ul>
+            </div>
+
 
         </div>
         <img src="{% static 'images/website_photos/white-wall.jpg' %}" alt="white-wall" class="white-wall-picture">

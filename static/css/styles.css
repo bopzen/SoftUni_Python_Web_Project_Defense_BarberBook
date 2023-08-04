@@ -181,6 +181,10 @@ a:hover {
     padding: 2px 8px;
     border-radius: 4px;
 }
+.matches {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
 
 
 button {
@@ -209,6 +213,21 @@ button:hover {
 
 .main-container {
     margin: 0.25rem 3rem;
+}
+
+.container-about {
+    margin: 0 6rem;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: space-between;
+}
+
+.container-about img {
+    width: 100%;
+    border: 3px solid black;
+    border-radius: 6px;
+    box-shadow: 5px 10px 8px #888888;
 }
 .main-reservation-success-container {
     margin: 3rem;
