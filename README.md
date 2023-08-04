@@ -38,12 +38,16 @@ DB Schema for the models excluding the build-in Django models:
 - Most of the views are Class Based Views and some of the views are Function Based Views
 
 ### Templates:
-- Django Template Language is used with some additional helpf of Bootstrap, Javascript, jQuery and LeafLetMap library for the dynamic parts
+- Django Template Language is used with some additional help of Bootstrap, Javascript, jQuery and LeafLetMap library for the dynamic parts
+
+### API:
+- Very simple public API showing all reservations made on the website
 
 ### **The project is developed using the following technologies:**
 - **For Back-end:** Python, Django Framework
 - **For Front-end:** Custom HTML, CSS and additional components built with Bootstrap, Javascript, jQuery, LeafLet Maps Library
 - **For Database:** PostgreSQL
+- **For API:** Django REST Framework
 
 ### **Screenshots of the web application:**
 - Home Page
@@ -92,3 +96,7 @@ DB Schema for the models excluding the build-in Django models:
 
 - Admin Page
 ![admin-page.png](site-images%2Fadmin-page.png)
+
+
+-API Page
+![REST-API.png](site-images%2FREST-API.png)
