@@ -18,6 +18,7 @@
                 <h2>{{ client_message }}</h2>
             {% else %}
                 <h2>{{ barbershop_message }}</h2>
+                <a href="{% url 'reservation-list' pk=request.user.pk %}" class="check-out">Check your reservations</a>
             {% endif %}
         {% endif %}
         {% if not request.user.is_authenticated or request.user|get_role == 'Client' %}

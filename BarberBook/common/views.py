@@ -17,7 +17,11 @@ def home_page(request):
     client_message = None
     if user.is_authenticated and hasattr(user, 'clientprofile'):
         total_reservations = Reservation.objects.filter(user=user).count()
-        client_message = f"You have booked {total_reservations} appointments so far."
+        if total_reservations == 1:
+            client_message = f"Total {total_reservations} booked appointment with us"
+        else:
+            client_message = f"Total {total_reservations} booked appointments with us"
+
 
     barbershop_message = None
     if user.is_authenticated and hasattr(user, 'barbershopprofile'):
