@@ -229,6 +229,12 @@ button:hover {
     border-radius: 6px;
     box-shadow: 5px 10px 8px #888888;
 }
+.oops-picture{
+    height: 80vh;
+    border: 3px solid black;
+    border-radius: 6px;
+    box-shadow: 5px 10px 8px #888888;
+}
 .main-reservation-success-container {
     margin: 3rem;
 }
