@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core import validators
 from django.db import models
 
 from BarberBook.barbershop.models import BarbershopProfile
@@ -14,6 +15,8 @@ class Review(models.Model):
         (4, 4),
         (5, 5)
     ]
+    MIN_LENGTH_COMMENT = 5
+    MAX_LENGTH_COMMENT = 200
 
     user = models.ForeignKey(
         UserModel,
@@ -27,7 +30,10 @@ class Review(models.Model):
         choices=RATING_CHOICES,
     )
     comment = models.TextField(
-        max_length=200
+        max_length=MAX_LENGTH_COMMENT,
+        validators=(validators.MinLengthValidator(MIN_LENGTH_COMMENT),),
+        null=True,
+        blank=True
     )
 
     date_created = models.DateTimeField(

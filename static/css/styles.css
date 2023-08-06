@@ -379,9 +379,8 @@ div #id_role {
     width: 700px;
 }
 
-.register-errors {
+.register-errors, .errorlist {
     font-size: 0.8rem;
-    line-height: 0.5;
     color: red;
 }
 

@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.core import exceptions
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
@@ -194,9 +195,12 @@ def create_reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST, initial=initial_data)
         if form.is_valid():
-            reservation = form.save()
-            request.session['reservation_id'] = reservation.id
-            return redirect('reservation-success')
+            try:
+                reservation = form.save()
+                request.session['reservation_id'] = reservation.id
+                return redirect('reservation-success')
+            except exceptions.ValidationError:  # Handle the ValidationError exception
+                form.add_error(None, 'A reservation with the same details already exists.')
     else:
         form = ReservationForm(initial=initial_data)
 

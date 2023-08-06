@@ -2,51 +2,86 @@ import uuid
 from datetime import time
 
 from django.contrib.auth import get_user_model
+from django.core import validators
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.template.defaultfilters import slugify
+
+from BarberBook.barbershop.validators import validate_barbershop_picture_file_size, \
+    validate_barbershop_city_name
 
 UserModel = get_user_model()
 
 
 class BarbershopProfile(models.Model):
+    MIN_LENGTH_NAME = 2
+    MAX_LENGTH_NAME = 50
+    MIN_LENGTH_ADDRESS = 5
+    MAX_LENGTH_ADDRESS = 50
+    MIN_LENGTH_CITY = 2
+    MAX_LENGTH_CITY = 50
+    MAX_DIGITS_GEOLOCATION = 18
+    DECIMAL_PLACES_GEOLOCATION = 15
+    MIN_VALUE_GEOLOCATION_LATITUDE = -90
+    MAX_VALUE_GEOLOCATION_LATITUDE = 90
+    MIN_VALUE_GEOLOCATION_LONGITUDE = -180
+    MAX_VALUE_GEOLOCATION_LONGITUDE = 180
+    MIN_LENGTH_ABOUT = 10
+    MAX_LENGTH_ABOUT = 200
+
     class Meta:
         verbose_name = 'Barbershop Profile'
 
     name = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_NAME,
+        validators=(validators.MinLengthValidator(MIN_LENGTH_NAME),),
         null=False,
         blank=False
     )
     address = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_ADDRESS,
+        validators=(validators.MinLengthValidator(MIN_LENGTH_ADDRESS),),
         null=False,
         blank=False
     )
     city = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_CITY,
+        validators=(
+            validators.MinLengthValidator(MIN_LENGTH_CITY),
+            validate_barbershop_city_name,
+        ),
         null=False,
         blank=False
     )
     geolocation_latitude = models.DecimalField(
-        max_digits=18,
-        decimal_places=15,
+        max_digits=MAX_DIGITS_GEOLOCATION,
+        decimal_places=DECIMAL_PLACES_GEOLOCATION,
+        validators=(
+            validators.MinValueValidator(MIN_VALUE_GEOLOCATION_LATITUDE),
+            validators.MaxValueValidator(MAX_VALUE_GEOLOCATION_LATITUDE)
+        ),
         null=True,
         blank=True
         )
     geolocation_longitude = models.DecimalField(
-        max_digits=18,
-        decimal_places=15,
+        max_digits=MAX_DIGITS_GEOLOCATION,
+        decimal_places=DECIMAL_PLACES_GEOLOCATION,
+        validators=(
+            validators.MinValueValidator(MIN_VALUE_GEOLOCATION_LONGITUDE),
+            validators.MaxValueValidator(MAX_VALUE_GEOLOCATION_LONGITUDE)
+        ),
         null=True,
         blank=True
         )
     about = models.TextField(
-        max_length=200,
+        max_length=MAX_LENGTH_ABOUT,
+        validators=(validators.MinLengthValidator(MIN_LENGTH_ABOUT),),
         null=True,
         blank=True
     )
     barbershop_picture = models.ImageField(
         upload_to='barbershop-profile-pictures',
+        validators=(validate_barbershop_picture_file_size,),
         null=True,
         blank=True,
     )
@@ -80,11 +115,15 @@ class BarbershopProfile(models.Model):
 
 
 class ServiceCategory(models.Model):
+    MIN_LENGTH_SERVICE_CATEGORY = 3
+    MAX_LENGTH_SERVICE_CATEGORY = 30
+
     class Meta:
         verbose_name_plural = 'Service Categories'
 
     category_name = models.CharField(
-        max_length=30,
+        max_length=MAX_LENGTH_SERVICE_CATEGORY,
+        validators=(validators.MinLengthValidator(MIN_LENGTH_SERVICE_CATEGORY),),
         null=False,
         blank=False
     )
@@ -94,17 +133,25 @@ class ServiceCategory(models.Model):
 
 
 class BarbershopService(models.Model):
+    MIN_LENGTH_BARBERSHOP_SERVICE = 3
+    MAX_LENGTH_BARBERSHOP_SERVICE = 50
+    MAX_DIGITS_PRICE = 5
+    DECIMAL_PLACES_PRICE = 2
+    MIN_VALUE_PRICE = 0.01
+
     class Meta:
         verbose_name_plural = 'Barbershop Services'
 
     service_name = models.CharField(
-        max_length=50,
+        max_length=MAX_LENGTH_BARBERSHOP_SERVICE,
+        validators=(validators.MinLengthValidator(MIN_LENGTH_BARBERSHOP_SERVICE),),
         null=False,
         blank=False
     )
     price = models.DecimalField(
-        max_digits=5,
-        decimal_places=2,
+        max_digits=MAX_DIGITS_PRICE,
+        decimal_places=DECIMAL_PLACES_PRICE,
+        validators=(validators.MinValueValidator(MIN_VALUE_PRICE),),
         null=False,
         blank=False
     )
@@ -188,7 +235,10 @@ class BarbershopPicture(models.Model):
         BarbershopProfile,
         on_delete=models.CASCADE
     )
-    image = models.ImageField(upload_to=barbershop_picture_upload_to)
+    image = models.ImageField(
+        upload_to=barbershop_picture_upload_to,
+        validators=(validate_barbershop_picture_file_size,)
+    )
 
     def __str__(self):
         return f'{self.barbershop.name} - {self.image.name}'

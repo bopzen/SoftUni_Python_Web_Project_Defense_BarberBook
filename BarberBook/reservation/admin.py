@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core import exceptions
 from django.utils.translation import gettext_lazy as _
 from datetime import time
 from BarberBook.reservation.models import Reservation
@@ -36,3 +37,4 @@ class AdminReservation(admin.ModelAdmin):
         return obj.user.email
 
     user_email.short_description = 'User Email'
+

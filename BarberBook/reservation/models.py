@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core import exceptions
 from django.db import models
 
 from BarberBook.barber.models import Barber
@@ -6,7 +7,6 @@ from BarberBook.barbershop.models import BarbershopProfile, BarbershopService
 from BarberBook.client.models import ClientProfile
 
 from datetime import time
-
 
 UserModel = get_user_model()
 
@@ -49,3 +49,16 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f'Reservation for Client: {self.user} Barber: {self.barber} at {self.barbershop} on {self.date} {self.time}'
+
+    def save(self, *args, **kwargs):
+        existing_reservation = Reservation.objects.filter(
+            barbershop=self.barbershop,
+            barber=self.barber,
+            date=self.date,
+            time=self.time,
+        ).exclude(pk=self.pk).first()
+
+        if existing_reservation:
+            raise exceptions.ValidationError("A reservation with the same attributes already exists.")
+
+        super().save(*args, **kwargs)
