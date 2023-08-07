@@ -67,7 +67,7 @@
                             <form action="{% url 'delete-reservation' reservation.id %}" method="POST" id="delete-form-{{ reservation.id }}">
                                 {% csrf_token %}
                                 <input type="hidden" name="reservation_id" value="{{ reservation.id }}">
-                                <button class="table-button" type="submit" onclick="showDeleteConfirmation({{ reservation.id }})">Delete</button>
+                                <button class="table-button" type="button" onclick="showDeleteConfirmation({{ reservation.id }})">Delete</button>
                             </form>
                         </td>
                     </tr>
