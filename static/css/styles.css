@@ -7,6 +7,8 @@
 @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
 @import 'https://use.fontawesome.com/releases/v5.10.2/css/all.css';
 
+
+
 :root {
 	--button-brown: #370511;
 }
@@ -763,3 +765,100 @@ h1, h2, h3, h4, h5, h6 {
     background-image: url('/static/images/hair-clipper-black.jpg');
 }
 
+
+
+/* Responsive design Media Queries */
+@media (max-width: 600px) {
+
+    main {
+        min-height: 65vh;
+    }
+    main h1 {
+        font-size: 2.75rem;
+    }
+    h2 {
+        font-size: 2.25rem;
+    }
+    header {
+        flex-direction: column;
+        padding: 0;
+    }
+    .home-logo {
+        margin: 0.5rem 0;
+    }
+    .search-field {
+        margin: 0.5rem 0;
+        width: 80%;
+    }
+    .header-nav-links {
+        display: flex;
+        margin: 0.5rem 0;
+        min-height: 57px;
+        font-size: 1.25rem;
+    }
+    .header-nav-links ul {
+        align-self: center;
+    }
+    .nav-profile {
+        font-size: 1rem;
+    }
+    .cover-picture-container {
+        height: 45vh;
+    }
+    .cover-picture-container img{
+        top: -40px;
+    }
+    .white-wall-picture {
+        display: none;
+    }
+    .wall-picture-container, .wall-barbershop-picture-container {
+        background: #e5e5e5;
+    }
+    #search-results:not(:empty) {
+        width: 90%;
+        top: 80px;
+        left: 5vh;
+    }
+    .change-password-form-container {
+        width: 580px;
+    }
+    .change-password-form-container form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+    .change-password-form-container form p {
+        flex-direction: column;
+        align-self: center;
+        width: 80%;
+    }
+    .reservation-list-table {
+        font-size: 0.8rem;
+    }
+    .pagination {
+        margin-bottom: 0.5rem;
+    }
+    .barbershop-header {
+        flex-direction: column;
+    }
+    .barbershop-details-wrapper, .barbershop-details-wrapper2, .barbershop-pictures {
+        flex-direction: column;
+    }
+    .barbershop-photo-thumbnail  {
+        width: 90%;
+        height: auto;
+    }
+    .reservation-form-container {
+        width: 580px;
+    }
+    .reservation-container {
+        flex-direction: column;
+        width: auto;
+    }
+    .reserved-stamp {
+        margin-top: 2rem;
+    }
+    .container-about {
+        flex-direction: column;
+    }
+}
