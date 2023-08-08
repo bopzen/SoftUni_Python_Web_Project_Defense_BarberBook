@@ -254,7 +254,7 @@ class ReservationsListView(auth_mixins.LoginRequiredMixin, views.ListView):
     model = Reservation
     template_name = 'reservation/reservations-list.html'
     context_object_name = 'reservations'
-    paginate_by = 8
+    paginate_by = 20
 
     def get_queryset(self):
         user = self.request.user
