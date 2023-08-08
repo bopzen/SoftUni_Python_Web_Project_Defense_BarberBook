@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="barbershop-profile-picture">
-                        {% if object.barbershop_picture %}
+                        {% if barbershop.barbershop_picture %}
                             <img src="{{ barbershop.barbershop_picture.url }}" class="profile-picture-card" alt="barbershop-profile_picture">
                         {% else %}
                             <img src="{% static 'images/barbershop-default-profile-picture.jpg' %}" alt="barber_default_profile_picture" class="profile-picture-card">

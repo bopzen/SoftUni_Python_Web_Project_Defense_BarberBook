@@ -27,7 +27,7 @@ class BarbershopProfile(models.Model):
     MIN_VALUE_GEOLOCATION_LONGITUDE = -180
     MAX_VALUE_GEOLOCATION_LONGITUDE = 180
     MIN_LENGTH_ABOUT = 10
-    MAX_LENGTH_ABOUT = 200
+    MAX_LENGTH_ABOUT = 500
 
     class Meta:
         verbose_name = 'Barbershop Profile'
@@ -98,8 +98,9 @@ class BarbershopProfile(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not self.pk:
-            for day in range(1, 8):
+        if self._state.adding:  # Check if the instance is being added for the first time
+            super().save(*args, **kwargs)  # Save the instance to get a valid id
+            for day in range(0, 7):
                 BarbershopWorkingHours.objects.create(
                     barbershop=self,
                     day=day,
