@@ -5,7 +5,9 @@ from django.core import exceptions
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
+from django_excel import make_response
+from excel_response import ExcelResponse
 
 from BarberBook.barber.models import Barber
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService
@@ -312,6 +314,32 @@ class ReservationsListView(auth_mixins.LoginRequiredMixin, views.ListView):
         context['upcoming_reservations'] = upcoming_reservations_page
 
         return context
+
+
+class ReservationsExcelDownloadView(auth_mixins.LoginRequiredMixin, views.View):
+    def get(self, request):
+        barbershop_profile = get_object_or_404(BarbershopProfile, user=request.user)
+        barbershop_reservations = Reservation.objects.filter(barbershop=barbershop_profile)
+
+        excel_data = [
+            ['ID', 'User', 'Barbershop', 'Barber', 'Date', 'Time', 'Service', 'Price']
+        ]
+        for reservation in barbershop_reservations:
+            excel_data.append([
+                reservation.id,
+                reservation.user.username,
+                reservation.barbershop.name,
+                reservation.barber.name,
+                reservation.date.strftime('%Y-%m-%d'),
+                reservation.time.strftime('%H:%M:%S'),
+                reservation.service.service_name,
+                reservation.service.price
+            ])
+
+        response = ExcelResponse(excel_data, 'xlsx')
+        response['Content-Disposition'] = f'attachment; filename="{barbershop_profile.user.username}_reservations.xlsx"'
+
+        return response
 
 
 class DeleteReservationView(auth_mixins.LoginRequiredMixin, views.DeleteView):

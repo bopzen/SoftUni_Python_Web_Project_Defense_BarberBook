@@ -51,7 +51,7 @@ class BarbershopReviewsListView(views.ListView):
     model = Review
     template_name = 'review/barbershop-reviews-list.html'
     context_object_name = 'reviews'
-    paginate_by = 2
+    paginate_by = 6
 
     def get_queryset(self):
         barbershop = get_object_or_404(BarbershopProfile, slug=self.kwargs['slug'])
@@ -71,7 +71,7 @@ class ClientReviewsListView(auth_mixins.LoginRequiredMixin, views.ListView):
     model = Review
     template_name = 'review/client-reviews-list.html'
     context_object_name = 'reviews'
-    paginate_by = 2
+    paginate_by = 6
 
     def get_queryset(self):
         user = get_object_or_404(ClientProfile, pk=self.kwargs['pk'])
