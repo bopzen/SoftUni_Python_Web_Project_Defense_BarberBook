@@ -14,7 +14,8 @@ The app has 2 types of users: **Client** and **Barbershop**. Each user is extend
 - Client Profile can register, login, logout, delete profile, change password, edit their details, add profile picture, manage their reservations, write a review for barbershops that they have visited.
 - Barbershop Profile can register, login, logout, delete profile, change password, edit their details, services, barbers, working hours, add profile picture and barbershop photos, manage their reservations.
 - Barbershops can be searched via search field, via list of barbershops and via map
-- Reservation process is based on 6 steps where the client choses the barbershop, the barber, the service, the date and the time based on the availability and confirms the reservation.
+- Reservation process is based on 6 steps where the client chooses the barbershop, the barber, the service, the date and the time based on the availability and confirms the reservation.
+- The application also has a responsive design for mobile version
 
 
 ## Short Tech Description:
@@ -98,5 +99,21 @@ DB Schema for the models excluding the build-in Django models:
 ![admin-page.png](site-images%2Fadmin-page.png)
 
 
--API Page
+- API Page
 ![REST-API.png](site-images%2FREST-API.png)
+
+Mobile version: 
+
+- Mobile Home Page
+
+![mobile-home-page.png](site-images%2Fmobile-home-page.png)
+
+
+- Mobile Reservation List Page
+
+![mobile-reservation-list.png](site-images%2Fmobile-reservation-list.png)
+
+
+- Mobile Map Page
+
+![mobile-map-page.png](site-images%2Fmobile-map-page.png)
