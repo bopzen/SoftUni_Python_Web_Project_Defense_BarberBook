@@ -210,7 +210,7 @@ Barberbook Barbershop Details Page
     </div>
 
     <script>
-        let map = L.map('map').setView([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], 17);
+        let map = L.map('map', {scrollWheelZoom: false}).setView([{{ object.geolocation_latitude }}, {{ object.geolocation_longitude }}], 17);
 
         customIcon = L.icon({
             iconUrl: "{% static 'images/point_barbershop_logo.png' %}",

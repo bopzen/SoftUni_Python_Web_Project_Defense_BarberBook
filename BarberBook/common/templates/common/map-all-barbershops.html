@@ -23,13 +23,21 @@
     </div>
 
     <script>
-        let map = L.map('map').setView([42.69615032408835, 23.32177127341931], 13);
+        let map = L.map('map', {scrollWheelZoom: false}).setView([42.69615032408835, 23.32177127341931], 13);
         let bounds = new L.LatLngBounds();
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 50,
         }).addTo(map);
+
+        map.on('click', function() {
+            if (map.scrollWheelZoom.enabled()) {
+                map.scrollWheelZoom.disable();
+            } else {
+                map.scrollWheelZoom.enable();
+            }
+        });
         let lat
         let lon
         let name
