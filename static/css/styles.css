@@ -650,6 +650,20 @@ h1, h2, h3, h4, h5, h6 {
     left: 4rem;
     z-index: 10;
 }
+.card-rating {
+    position: absolute;
+    font-size: 0.8rem;
+    top: 7rem;
+    left: 4rem;
+    z-index: 10;
+}
+.card-rating i {
+    font-size: 0.8rem;
+}
+.popup-rating i {
+    font-size: 0.8rem !important;
+}
+
 .about {
     width: 40%;
 }

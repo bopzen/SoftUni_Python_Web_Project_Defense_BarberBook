@@ -108,10 +108,10 @@ Barberbook Barbershop Details Page
                             {% endif %}
                             <a href="{% url 'barbershop-reviews-list' slug=object.slug %}">{{ barbershop_rating|floatformat:1 }} ({{ barbershop_reviews_count }}
                             {% if barbershop_reviews_count == 1 %}
-                                review
+                                review)
                             {% else %}
-                                reviews
-                            {% endif %})</a>
+                                reviews)
+                            {% endif %}</a>
                         </p>
                     {% else %}
                         <p>No reviews yet.</p>

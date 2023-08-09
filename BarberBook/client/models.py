@@ -22,7 +22,7 @@ class ClientProfile(models.Model):
         max_length=MAX_LENGTH_FIRST_NAME,
         validators=(
             validators.MinLengthValidator(MIN_LENGTH_FIRST_NAME),
-            validate_client_name
+            validate_client_name,
         ),
         null=False,
         blank=False
@@ -31,7 +31,7 @@ class ClientProfile(models.Model):
         max_length=MAX_LENGTH_LAST_NAME,
         validators=(
             validators.MinLengthValidator(MIN_LENGTH_LAST_NAME),
-            validate_client_name
+            validate_client_name,
         ),
         null=False,
         blank=False
@@ -49,7 +49,7 @@ class ClientProfile(models.Model):
         max_length=MAX_LENGTH_PHONE_NUMBER,
         validators=(
             validators.MinLengthValidator(MIN_LENGTH_PHONE_NUMBER),
-            validate_client_phone_number
+            validate_client_phone_number,
         ),
         null=False,
         blank=False

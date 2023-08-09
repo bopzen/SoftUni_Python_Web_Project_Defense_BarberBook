@@ -37,7 +37,9 @@
             </div>
             <button type="submit">Apply Filters</button>
         </form>
-        <button><a href="{% url 'download-reservations' %}">Export all</a></button>
+        {% if request.user|get_role == 'Barbershop' %}
+            <button><a href="{% url 'download-reservations' %}">Export all</a></button>
+        {% endif %}
         <h2>Upcoming Reservations: {{ upcoming_reservations.paginator.count }}</h2>
         <table class="reservation-list-table">
             <thead>

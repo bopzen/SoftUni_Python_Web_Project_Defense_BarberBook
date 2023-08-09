@@ -1,4 +1,4 @@
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import mixins as auth_mixins
@@ -49,6 +49,15 @@ class BarbershopListView(views.ListView):
     template_name = 'barbershop/barbershops-list.html'
     context_object_name = 'barbershops'
     paginate_by = 6
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Annotate the queryset with average rating and reviews count
+        queryset = queryset.annotate(avg_rating=Avg('review__rating'))
+        queryset = queryset.annotate(reviews_count=Count('review'))
+
+        return queryset
 
 
 class CreateBarbershopServiceView(auth_mixins.LoginRequiredMixin, views.CreateView):

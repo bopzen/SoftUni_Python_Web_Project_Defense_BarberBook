@@ -1,6 +1,6 @@
 import datetime
 
-from django.db.models import Q
+from django.db.models import Q, Avg, Count
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -41,6 +41,8 @@ def home_page(request):
 
 def map_page(request):
     barbershops = BarbershopProfile.objects.all()
+    barbershops = barbershops.annotate(avg_rating=Avg('review__rating'))
+    barbershops = barbershops.annotate(reviews_count=Count('review'))
     context = {
         'barbershops': barbershops
     }

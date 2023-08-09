@@ -58,7 +58,77 @@
                 });
                 popupContent = `
                 <a href="{% url 'barbershop-details' slug=barbershop.slug %}">
-                    <b>{{ barbershop.name }}</b><br>{{ barbershop.address }}
+                    <b>{{ barbershop.name }}</b>
+                    <br>{{ barbershop.address }}
+                    <br>
+                    <div class="popup-rating">
+                        {% if barbershop.avg_rating %}
+                            {% if barbershop.avg_rating >= 1 and barbershop.avg_rating < 1.5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif barbershop.avg_rating >= 1.5 and barbershop.avg_rating < 2 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif barbershop.avg_rating >= 2 and barbershop.avg_rating < 2.5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif barbershop.avg_rating >= 2.5 and barbershop.avg_rating < 3 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif barbershop.avg_rating >= 3 and barbershop.avg_rating < 3.5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif barbershop.avg_rating >= 3.5 and barbershop.avg_rating < 4 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            {% elif barbershop.avg_rating >= 4 and barbershop.avg_rating < 4.5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            {% elif barbershop.avg_rating >= 4.5 and barbershop.avg_rating < 5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            {% elif barbershop.avg_rating == 5 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            {% endif %}
+                            <a href="{% url 'barbershop-reviews-list' slug=barbershop.slug %}">{{ barbershop.avg_rating|floatformat:1 }} ({{ barbershop.reviews_count }}
+                            {% if barbershop.reviews_count == 1 %}
+                                review)
+                            {% else %}
+                                reviews)
+                            {% endif %}</a>
+                        {% else %}
+                            <p>No reviews yet.</p>
+                        {% endif %}
+                    </div>
+
                 </a>`;
                 marker = L.marker([lat, lon], { icon: customIcon }).addTo(map);
                 marker.bindPopup(popupContent);
