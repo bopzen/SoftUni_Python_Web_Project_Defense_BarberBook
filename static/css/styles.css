@@ -807,6 +807,9 @@ h1, h2, h3, h4, h5, h6 {
 .star-rating input[type="radio"]:checked ~ label {
     background-image: url('/static/images/hair-clipper-black.jpg');
 }
+.fa-file-excel {
+    font-size: 1.25rem;
+}
 
 
 
