@@ -2,6 +2,9 @@
 
 This is my project for SoftUni Python Web Frameworks Module.
 
+The project is deployed in PythonAnywhere and you can access it from the following link:
+http://barberbook.pythonanywhere.com/
+
 # **Barberbook**
 
 **Barberbook is a web application developed with Django. The main purpose of the application is to allow clients to book barbershop appointments 
