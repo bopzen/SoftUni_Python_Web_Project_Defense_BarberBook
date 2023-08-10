@@ -122,6 +122,31 @@ class ClientProfileTest(TestCase):
             client.full_clean()
         print(context.exception)
 
-
 # TEST phone
+    def test_create__when_phone_has_1_more_than_valid_characters__expect_to_raise(self):
+        client = self.create_client(self.VALID_CLIENT_PROFILE_DATA, phone='0' * ClientProfile.MAX_LENGTH_PHONE_NUMBER + '1')
+        print(client.phone)
+        with self.assertRaises(ValidationError) as context:
+            client.full_clean()
+        print(context.exception)
 
+    def test_create__when_test_create__when_phone_has_1_less_than_valid_characters__expect_to_raise(self):
+        client = self.create_client(self.VALID_CLIENT_PROFILE_DATA, phone='0' * (ClientProfile.MIN_LENGTH_PHONE_NUMBER-1))
+        print(client.phone)
+        with self.assertRaises(ValidationError) as context:
+            client.full_clean()
+        print(context.exception)
+
+    def test_create__when_phone_starts_with_different_character_than_zero__expect_to_raise(self):
+        client = self.create_client(self.VALID_CLIENT_PROFILE_DATA, phone='111111111')
+        print(client.phone)
+        with self.assertRaises(ValidationError) as context:
+            client.full_clean()
+        print(context.exception)
+
+    def test_create__when_phone_contains_not_digit_character__expect_to_raise(self):
+        client = self.create_client(self.VALID_CLIENT_PROFILE_DATA, phone='0111111111s')
+        print(client.phone)
+        with self.assertRaises(ValidationError) as context:
+            client.full_clean()
+        print(context.exception)
