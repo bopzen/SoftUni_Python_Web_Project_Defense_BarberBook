@@ -921,3 +921,147 @@ h1, h2, h3, h4, h5, h6 {
         margin-bottom: 2rem;
     }
 }
+
+@media (max-width: 400px) {
+
+
+    main {
+        min-height: 55vh;
+    }
+    .wall-picture-container {
+        min-height: 65vh;
+    }
+    main h1 {
+        font-size: 2rem;
+        margin-top: 0.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+    .check-out {
+        font-size: 1rem;
+    }
+    header {
+        flex-direction: column;
+        padding: 0;
+    }
+    .main-footer-container {
+        padding: 0;
+    }
+    .main-form-container {
+        width: 97%;
+        margin: 6px;
+    }
+    .form-container {
+        width: 100%;
+        padding: 0.5rem;
+    }
+    .home-logo {
+        margin: 0.5rem 0;
+    }
+    .search-field {
+        margin: 0.5rem 0;
+        width: 80%;
+    }
+    .header-nav-links {
+        display: flex;
+        margin: 0.5rem 0;
+        min-height: 57px;
+        font-size: 1.25rem;
+    }
+    .header-nav-links ul {
+        align-self: center;
+    }
+    .nav-profile {
+        font-size: 1rem;
+    }
+    .cover-picture-container {
+        height: 35vh;
+    }
+    .cover-picture-container img{
+        top: 0px;
+    }
+    .white-wall-picture {
+        display: none;
+    }
+
+    .wall-picture-container, .wall-barbershop-picture-container {
+        background: #e5e5e5;
+    }
+    .main-container {
+        margin: 0.5rem;
+    }
+    #search-results:not(:empty) {
+        width: 100%;
+        top: 80px;
+        left: 5px;
+    }
+    .change-password-form-container {
+        width: 390px;
+    }
+    .change-password-form-container form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+    .change-password-form-container form p {
+        flex-direction: column;
+        align-self: center;
+        width: 80%;
+    }
+    .reservation-list-table {
+        font-size: 0.5rem;
+    }
+    .review-container {
+        width: 390px;
+    }
+    .pagination {
+        margin-bottom: 0.5rem;
+    }
+    .barbershop-header {
+        flex-direction: column;
+    }
+    .barbershop-details-wrapper, .barbershop-details-wrapper2, .barbershop-pictures {
+        flex-direction: column;
+    }
+    .barbershop-photo-thumbnail  {
+        width: 90%;
+        height: auto;
+    }
+    .reservation-form-container {
+        width: 580px;
+    }
+    .reservation-container {
+        flex-direction: column;
+        width: auto;
+    }
+    .reserved-stamp {
+        margin-top: 2rem;
+    }
+    .filter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    .filter-form div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 80%;
+    }
+    .container-about {
+        flex-direction: column;
+    }
+    .barbershop-details-wrapper2 div {
+        width: 80%;
+    }
+    .book-now-button {
+        margin-bottom: 2rem;
+    }
+    #map {
+        width: 380px;
+    }
+    .barbershop-photo-thumbnail {
+        width: 100%;
+    }
+}
