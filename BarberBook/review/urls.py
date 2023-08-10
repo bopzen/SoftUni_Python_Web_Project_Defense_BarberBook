@@ -1,5 +1,4 @@
 from django.urls import path
-
 from BarberBook.review.views import create_review, BarbershopReviewsListView, ClientReviewsListView, EditReviewView, \
     DeleteReviewView
 

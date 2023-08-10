@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
-
 from BarberBook.client.validators import validate_client_name, validate_client_city_name, \
     validate_client_phone_number, validate_client_picture_file_size
 

@@ -1,9 +1,7 @@
 import datetime
-
 from django.db.models import Q, Avg, Count
 from django.http import JsonResponse
 from django.shortcuts import render
-
 from BarberBook.barbershop.models import BarbershopProfile
 from BarberBook.reservation.models import Reservation
 

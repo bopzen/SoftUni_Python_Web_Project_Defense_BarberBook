@@ -1,5 +1,4 @@
 from django.urls import path, include
-
 from BarberBook.barbershop.views import EditBarbershopProfileView, BarbershopProfileDetailsView, BarbershopListView, \
     CreateBarbershopServiceView, EditBarbershopServiceView, DeleteBarbershopServiceView, \
     BarbershopServicesDetailsView, EditBarbershopWorkingHoursView, BarbershopWorkingHoursDetailsView, \

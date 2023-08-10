@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
-
 from BarberBook.account.models import AppUser
 from BarberBook.barbershop.models import BarbershopProfile
 from BarberBook.client.models import ClientProfile

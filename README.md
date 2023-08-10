@@ -24,7 +24,7 @@ The app has 2 types of users: **Client** and **Barbershop**. Each user is extend
 
 ## Short Tech Description:
 
-### Models:
+### Models (total 10):
 - AppUser
 - ClientProfile
 - BarbershopProfile
@@ -39,10 +39,10 @@ The app has 2 types of users: **Client** and **Barbershop**. Each user is extend
 DB Schema for the models excluding the build-in Django models:
 ![db-schema.png](site-images%2Fdb-schema.png)
 
-### Views:
+### Views (total 42):
 - Most of the views are Class Based Views and some of the views are Function Based Views
 
-### Templates:
+### Templates (total 44):
 - Django Template Language is used with some additional help of Bootstrap, Javascript, jQuery and LeafLetMap library for the dynamic parts
 
 ### API:
@@ -53,6 +53,8 @@ DB Schema for the models excluding the build-in Django models:
 - **For Front-end:** Custom HTML, CSS and additional components built with Bootstrap, Javascript, jQuery, LeafLet Maps Library
 - **For Database:** PostgreSQL
 - **For API:** Django REST Framework
+
+[![My Skills](https://skillicons.dev/icons?i=py,django,js,html,css,bootstrap,jquery,postgres)](https://skillicons.dev)
 
 ### **Screenshots of the web application:**
 - Home Page

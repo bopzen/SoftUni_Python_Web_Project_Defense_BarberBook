@@ -1,5 +1,4 @@
 from django.urls import path
-
 from BarberBook.common.views import home_page, map_page, search_view, about_page
 
 urlpatterns = [

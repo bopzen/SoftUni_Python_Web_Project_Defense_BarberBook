@@ -1,5 +1,4 @@
 from django.urls import path
-
 from BarberBook.client.views import EditClientProfileView, ClientProfileDetailsView
 
 urlpatterns = [

@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
-
 from BarberBook.barbershop.models import BarbershopProfile
 
 UserModel = get_user_model()

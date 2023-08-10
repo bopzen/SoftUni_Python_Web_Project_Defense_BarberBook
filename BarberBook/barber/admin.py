@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from BarberBook.barber.models import Barber
 
 

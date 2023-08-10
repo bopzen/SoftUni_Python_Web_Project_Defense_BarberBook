@@ -1,12 +1,10 @@
 import uuid
 from datetime import time
-
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.template.defaultfilters import slugify
-
 from BarberBook.barbershop.validators import validate_barbershop_picture_file_size, \
     validate_barbershop_city_name
 

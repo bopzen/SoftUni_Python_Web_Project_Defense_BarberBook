@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from BarberBook.barbershop.models import BarbershopProfile, ServiceCategory, BarbershopService, BarbershopWorkingHours, \
     BarbershopPicture
 

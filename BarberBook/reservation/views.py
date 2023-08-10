@@ -6,9 +6,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django_excel import make_response
 from excel_response import ExcelResponse
-
 from BarberBook.barber.models import Barber
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService
 from BarberBook.reservation.forms import BarbershopServiceForm, BarbershopBarberForm, DateSelectionForm, \

@@ -1,5 +1,4 @@
 from django.urls import path, include
-
 from BarberBook.barber.views import CreateBarberView, EditBarberView, DeleteBarberView, BarberDetailsView
 
 urlpatterns = [

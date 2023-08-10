@@ -3,8 +3,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import mixins as auth_mixins
 from django.views import generic as views
-
-
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService, BarbershopWorkingHours, BarbershopPicture
 from BarberBook.review.models import Review
 

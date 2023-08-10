@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from BarberBook.client.models import ClientProfile
 
 

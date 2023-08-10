@@ -1,11 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.core import exceptions
 from django.db import models
-
 from BarberBook.barber.models import Barber
 from BarberBook.barbershop.models import BarbershopProfile, BarbershopService
 from BarberBook.client.models import ClientProfile
-
 from datetime import time
 
 UserModel = get_user_model()

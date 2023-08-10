@@ -1,15 +1,11 @@
 from datetime import datetime
-
 from django.contrib.auth import mixins as auth_mixins
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.shortcuts import render, redirect, get_object_or_404
-
 from .forms import ReviewForm
 from .models import Review
-
-
 from ..barbershop.models import BarbershopProfile
 from ..client.models import ClientProfile
 from ..reservation.models import Reservation

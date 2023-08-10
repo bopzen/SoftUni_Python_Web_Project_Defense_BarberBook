@@ -1,6 +1,5 @@
 from django.core import validators
 from django.db import models
-
 from BarberBook.barber.validators import validate_name, validate_barber_picture_file_size
 from BarberBook.barbershop.models import BarbershopProfile
 

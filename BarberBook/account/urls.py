@@ -1,5 +1,4 @@
 from django.urls import path
-
 from BarberBook.account.views import UserRegisterView, UserLoginView, UserLogoutView, UserDeleteView, \
     UserChangePasswordView
 
