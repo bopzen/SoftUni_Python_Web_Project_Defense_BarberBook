@@ -50,8 +50,6 @@ class BarbershopListView(views.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-
-        # Annotate the queryset with average rating and reviews count
         queryset = queryset.annotate(avg_rating=Avg('review__rating'))
         queryset = queryset.annotate(reviews_count=Count('review'))
 

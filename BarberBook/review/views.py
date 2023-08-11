@@ -27,8 +27,7 @@ def create_review(request, slug):
             review.barbershop = barbershop
             review.save()
             return redirect('barbershop-details', slug=barbershop.slug)
-        else:
-            print(form.errors)
+
     else:
         form = ReviewForm()
 

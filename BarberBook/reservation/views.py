@@ -24,8 +24,6 @@ def select_barbershop(request, slug):
     barbershop = BarbershopProfile.objects.get(slug=slug)
     request.session['user_id'] = user.pk
     request.session['barbershop_slug'] = slug
-    print(request.session['user_id'])
-    print(request.session['barbershop_slug'])
     context = {
         'user': user,
         'barbershop': barbershop
@@ -135,9 +133,7 @@ def select_time(request):
     available_time_slots = []
     current_time = datetime.combine(reservation_date, start_time)
     end_datetime = datetime.combine(reservation_date, end_time)
-    print(current_time)
     current_time = datetime.now() if current_time < datetime.now() else current_time
-    print(current_time)
 
     if current_time.minute == 0:
         current_time = current_time.replace(minute=0, second=0, microsecond=0)
@@ -199,7 +195,7 @@ def create_reservation(request):
                 reservation = form.save()
                 request.session['reservation_id'] = reservation.id
                 return redirect('reservation-success')
-            except exceptions.ValidationError:  # Handle the ValidationError exception
+            except exceptions.ValidationError:
                 form.add_error(None, 'A reservation with the same details already exists.')
     else:
         form = ReservationForm(initial=initial_data)
