@@ -7,7 +7,7 @@ Barberbook Edit Barbershop Page
 {% block content %}
     <div class="wall-picture-container">
         <div class="main-form-container">
-            <div class="form-container">
+            <div class="form-container edit-profile-form-container">
                 <h1>Edit Barbershop Profile</h1>
                 <h2>{{ request.user }}</h2>
                 <form action="{% url 'edit-barbershop' slug=object.slug %}" method="post" enctype="multipart/form-data">

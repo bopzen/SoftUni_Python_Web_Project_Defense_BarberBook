@@ -357,6 +357,26 @@ div #id_role {
 .form-container form label {
     font-weight: bold;
 }
+.edit-profile-form-container form p:last-of-type {
+    margin-top: 2rem;
+    flex-direction: column;
+    align-items: center;
+}
+.edit-profile-form-container form p:last-of-type a {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+input::file-selector-button {
+    font-family: Poppins, sans-serif;
+    font-weight: bold;
+    color: white;
+    background: black;
+    padding: 0.5em;
+    border: none;
+    border-radius: 3px;
+}
+
 .form-buttons {
     margin-top: 2rem;
     display: flex;

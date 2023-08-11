@@ -7,7 +7,7 @@ Barberbook Edit Client Page
 {% block content %}
     <div class="wall-picture-container">
         <div class="main-form-container">
-            <div class="form-container">
+            <div class="form-container edit-profile-form-container">
                 <h1>Edit Client Profile</h1>
                 <h2>{{ object.user }}</h2>
                 <form action="{% url 'edit-client' %}" method="post" enctype="multipart/form-data">
