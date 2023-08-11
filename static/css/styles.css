@@ -574,7 +574,6 @@ h1, h2, h3, h4, h5, h6 {
     background: darkgray;
 }
 
-
 .reservation-list-table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -585,7 +584,6 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-size: 0.8rem;
 }
-
 
 .pagination {
     margin-top: 1rem;
@@ -669,12 +667,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .book-now {
-    position: absolute;
     width: 170px;
-    bottom: 30px;
-    right: 30px;
     z-index: 10;
     transform: rotate(-20deg);
+}
+.book-now-wrapper {
+    position: absolute;
+    width: 170px;
+    bottom: 20px;
+    right: 30px;
+}
+.book-now-link {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 20;
 }
 
 .intro-container{
@@ -1068,12 +1075,39 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
     .barbershop-card {
-        width: 390px;
+        width: 380px;
     }
     .profile-picture-card {
         width: 80px;
     }
     .barbershop-info h3 {
         font-size: 1rem;
+    }
+    .reservation-form-container {
+        width: 380px;
+        padding: 6px;
+    }
+    .reservation-left-side img {
+        width: 150px;
+    }
+    .reservation-right-side {
+        width: 70%;
+    }
+    .reservation-form-wrapper {
+        font-size: 0.8rem;
+    }
+    .reservation-form-wrapper button {
+        padding: 3px;
+        margin: 3px;
+        font-size: 0.8rem;
+    }
+    .main-reservation-success-container {
+        margin: 0.5rem;
+    }
+    .reservation-container {
+        padding: 0.5rem;
+    }
+    .map-container #map {
+        width: 360px;
     }
 }

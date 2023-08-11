@@ -14,8 +14,11 @@
                 {% for barbershop in barbershops %}
                 <div class="barbershop-card">
                     <img src="{% static 'images/vintage_decorative_corner_pattern.png' %}" alt="corner" class="corner-left">
-
-                    <a href="{% url 'step1-select-barbershop' slug=barbershop.slug %}"><img src="{% static 'images/book_now_stamp_2.png' %}" alt="book-now" class="book-now"></a>
+                    <div class="book-now-wrapper">
+                        <a href="{% url 'step1-select-barbershop' slug=barbershop.slug %}" class="book-now-link">
+                            <img src="{% static 'images/book_now_stamp_2.png' %}" alt="book-now" class="book-now">
+                        </a>
+                    </div>
                     <div class="barbershop-info">
 
                         <h3>{{ barbershop.name }}</h3>
