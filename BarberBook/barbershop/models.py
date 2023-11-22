@@ -96,8 +96,8 @@ class BarbershopProfile(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if self._state.adding:
-            super().save(*args, **kwargs)
+        if self._state.adding:  # Check if the instance is being added for the first time
+            super().save(*args, **kwargs)  # Save the instance to get a valid id
             for day in range(0, 7):
                 BarbershopWorkingHours.objects.create(
                     barbershop=self,
