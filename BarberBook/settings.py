@@ -1,9 +1,12 @@
+import os
 from pathlib import Path
 from django.urls import reverse_lazy
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-ejs^wi*i2g41izr0^=^n^+xl@5j7cl072dd0myn8l63b6k!es0'
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
@@ -63,12 +66,12 @@ WSGI_APPLICATION = 'BarberBook.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "barberbook_db",
-        "USER": "postgres",
-        "PASSWORD": "Abc123",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "ENGINE": os.getenv('DB_ENGINE'),
+        "NAME": os.getenv('DB_NAME'),
+        "USER": os.getenv('DB_USER'),
+        "PASSWORD": os.getenv('DB_PASSWORD'),
+        "HOST": os.getenv('DB_HOST'),
+        "PORT": os.getenv('DB_PORT'),
     }
 }
 
